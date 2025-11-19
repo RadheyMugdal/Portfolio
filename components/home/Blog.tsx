@@ -1,9 +1,7 @@
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { Button } from "../ui/button"
-import { Github, Globe } from "lucide-react"
-import Link from "next/link"
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import { ExternalLink } from "lucide-react"
 
 const projects = [
     {
@@ -58,15 +56,34 @@ const projects = [
     }
 ]
 
-const Projects = () => {
+const blogs = [
+    {
+        id: '1',
+        thumbnailurl: "/notesbuddy.webp",
+        name: "Integrate Nextauth",
+        description: "This blog contains all the links of my content from twitter & Instagram.",
+        keywords: ["Nextjs", "Expressjs", "Nodejs"],
+        date: Date.now()
+    },
+    {
+        id: '1',
+        thumbnailurl: "/notesbuddy.webp",
+        name: "Integrate Nextauth",
+        description: "This blog contains all the links of my content from twitter & Instagram.",
+        keywords: ["Nextjs", "Expressjs", "Nodejs"],
+        date: Date.now()
+    }
+]
+
+const Blogs = () => {
     return (
         <div className=" max-w-2xl space-y-8  mx-auto">
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold">Projects</h3>
+                <h3 className="text-xl font-bold">Blogs</h3>
                 <div className=" grid grid-cols-2 gap-8">
                     {
-                        projects.map((project) => (
-                            <Card key={project.id} className=" !pt-0 overflow-hidden border-none">
+                        blogs.map((blog) => (
+                            <Card key={blog.id} className=" !pt-0 overflow-hidden border-none">
                                 <div className=" w-full h-52 ">
                                     <Image
                                         src={'/notesbuddy.webp'}
@@ -76,46 +93,31 @@ const Projects = () => {
                                         className=" w-full h-full bg-cover"
                                     />
                                 </div>
-                                <CardHeader className=" space-y-1" >
+                                <CardHeader className="  space-y-2" >
                                     <CardTitle className=" text-xl flex items-center justify-between">
-                                        {project.name}
-                                        <div>
-                                            <Link href={project.webUrl}  >
-                                                <Button variant={"ghost"} size={"icon-sm"}>
-                                                    <Globe />
-                                                </Button>
-                                            </Link>
-                                            <Link href={project.githubUrl}>
-                                                <Button variant={"ghost"} size={"icon-sm"}>
-                                                    <Github />
-                                                </Button>
-                                            </Link>
-                                        </div>
+                                        {blog.name}
+                                        <Button variant={"ghost"} size={"icon-sm"} >
+                                            <ExternalLink size={16} />
+                                        </Button>
                                     </CardTitle>
-                                    <CardDescription className=" opacity-60">
-                                        {project.description}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-3">
-                                        <p className="text-sm font-medium opacity-70">Tech stack</p>
-                                        <div className="flex gap-1 flex-wrap">
+                                    <div className=" space-y-2">
+                                        {/* <h3 className=" font-bold text-xs">Keyword</h3> */}
+                                        <div className="flex gap-2 flex-wrap">
                                             {
-                                                project.tech_stack.map((tech) => (
-                                                    <Tooltip key={tech.name}>
-                                                        <TooltipTrigger>
-                                                            <div className=" size-8">
-                                                                {tech.icon}
-                                                            </div>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="bottom">
-                                                            {tech.name}
-                                                        </TooltipContent>
-                                                    </Tooltip>
+                                                blog.keywords.map((keyword) => (
+                                                    <div key={keyword} className="bg-input/40 border border-dashed p-1  px-3 rounded-full text-xs ">
+                                                        {keyword}
+                                                    </div>
                                                 ))
                                             }
                                         </div>
                                     </div>
+                                    <CardDescription className=" opacity-60 mt-2">
+                                        {blog.description}
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+
                                 </CardContent>
                             </Card>
                         ))
@@ -124,11 +126,11 @@ const Projects = () => {
             </div>
             <div className="flex items-center justify-center">
                 <Button variant={"outline"} className=" ">
-                    See all Projects
+                    See all Blogs
                 </Button>
             </div>
         </div>
     )
 }
 
-export default Projects
+export default Blogs
