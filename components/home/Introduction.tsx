@@ -5,7 +5,7 @@ import { Send } from "lucide-react";
 const Introduction = () => {
   return (
     <div className=" max-w-2xl mx-auto space-y-12 ">
-      <div className=" pt-24 flex items-center justify-between">
+      <div className=" pt-28 flex items-center justify-between">
         <div className="flex flex-col gap-2">
           <h1 className=" text-5xl font-bold">Hi, Radhey here</h1>
           <p className="text-lg opacity-60">Full Stack Web Developer</p>

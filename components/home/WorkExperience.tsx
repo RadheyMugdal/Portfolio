@@ -6,7 +6,7 @@ const WorkExperience = () => {
         <div className=" max-w-2xl mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-bold">Work Experience</h3>
-                <Accordion type="single" collapsible>
+                <Accordion type="single" collapsible defaultValue="experience">
                     <AccordionItem value="experience" >
                         <AccordionTrigger className=" w-full hover:no-underline" >
                             <div className="flex  w-full gap-4">
