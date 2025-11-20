@@ -10,14 +10,12 @@ import WorkExperience from "@/components/home/WorkExperience";
 export default function HomePage() {
   return (
     <div className="relative space-y-16">
-      <Header />
       <Introduction />
       <Stack />
       <WorkExperience />
       <Projects />
       <GithubActivity />
       <Blogs />
-      <Footer />
       {/* <NavBar /> */}
     </div>
   );

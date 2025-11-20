@@ -4,6 +4,7 @@ import { Button } from "../ui/button"
 import { Github, Globe } from "lucide-react"
 import Link from "next/link"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import ProjectCard from "../project/ProjectCard"
 
 const projects = [
     {
@@ -12,6 +13,7 @@ const projects = [
         description: "A comprehensive study platform with notes, flashcards, quizzes, AI chatbot, and interactive learning tools",
         githubUrl: "",
         webUrl: "",
+        thumbnailUrl: "/notesbuddy.webp",
         tech_stack: [
             {
                 name: "Typescript",
@@ -36,6 +38,7 @@ const projects = [
         name: "Uptime Monitor",
         description: "A comprehensive study platform with notes, flashcards, quizzes, AI chatbot, and interactive learning tools",
         githubUrl: "",
+        thumbnailUrl: "/notesbuddy.webp",
         webUrl: "",
         tech_stack: [
             {
@@ -66,58 +69,10 @@ const Projects = () => {
                 <div className=" grid grid-cols-2 gap-8">
                     {
                         projects.map((project) => (
-                            <Card key={project.id} className=" !pt-0 overflow-hidden border-none">
-                                <div className=" w-full h-52 ">
-                                    <Image
-                                        src={'/notesbuddy.webp'}
-                                        width={1028}
-                                        height={780}
-                                        alt="mockup"
-                                        className=" w-full h-full bg-cover"
-                                    />
-                                </div>
-                                <CardHeader className=" space-y-1" >
-                                    <CardTitle className=" text-xl flex items-center justify-between">
-                                        {project.name}
-                                        <div>
-                                            <Link href={project.webUrl}  >
-                                                <Button variant={"ghost"} size={"icon-sm"}>
-                                                    <Globe />
-                                                </Button>
-                                            </Link>
-                                            <Link href={project.githubUrl}>
-                                                <Button variant={"ghost"} size={"icon-sm"}>
-                                                    <Github />
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </CardTitle>
-                                    <CardDescription className=" opacity-60">
-                                        {project.description}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-3">
-                                        <p className="text-sm font-medium opacity-70">Tech stack</p>
-                                        <div className="flex gap-1 flex-wrap">
-                                            {
-                                                project.tech_stack.map((tech) => (
-                                                    <Tooltip key={tech.name}>
-                                                        <TooltipTrigger>
-                                                            <div className=" size-8">
-                                                                {tech.icon}
-                                                            </div>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="bottom">
-                                                            {tech.name}
-                                                        </TooltipContent>
-                                                    </Tooltip>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <ProjectCard
+                                key={project.id}
+                                {...project}
+                            />
                         ))
                     }
                 </div>
