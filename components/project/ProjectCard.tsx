@@ -21,14 +21,14 @@ type Props = {
 
 const ProjectCard = ({ description, githubUrl, id, name, tech_stack, webUrl, thumbnailUrl }: Props) => {
     return (
-        <Card key={id} className=" !pt-0 overflow-hidden border-none">
+        <Card key={id} className=" pt-0! overflow-hidden border-none">
             <div className=" w-full h-52 ">
                 <Image
                     src={thumbnailUrl}
                     width={1028}
                     height={780}
                     alt="mockup"
-                    className=" w-full h-full bg-cover"
+                    className=" w-full h-full object-cover"
                 />
             </div>
             <CardHeader className=" space-y-1" >

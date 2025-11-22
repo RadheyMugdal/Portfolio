@@ -4,13 +4,13 @@ import { Send } from "lucide-react";
 
 const Introduction = () => {
   return (
-    <div className=" max-w-2xl mx-auto space-y-12 ">
+    <div className=" max-w-2xl mx-8 md:mx-auto   space-y-12 ">
       <div className=" pt-28 flex items-center justify-between">
         <div className="flex flex-col gap-2">
-          <h1 className=" text-5xl font-bold">Hi, Radhey here</h1>
-          <p className="text-lg opacity-60">Full Stack Web Developer</p>
+          <h1 className=" text-3xl md:text-5xl font-bold">Hi, Radhey here</h1>
+          <p className=" text-base md:text-lg opacity-60">Full Stack Web Developer</p>
         </div>
-        <Image src={"/galaxy.png"} width={100} height={100} alt="img" />
+        <Image src={"/galaxy.png"} width={100} height={100} className=" size-24 md:size-32" alt="img" />
       </div>
       {/*about*/}
 

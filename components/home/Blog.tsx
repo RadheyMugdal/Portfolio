@@ -3,35 +3,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Button } from "../ui/button"
 import { ExternalLink } from "lucide-react"
 import BlogCard from "../blog/BlogCard"
+import { allBlogs } from "@/.contentlayer/generated"
 
-const blogs = [
-    {
-        id: '1',
-        thumbnailurl: "/notesbuddy.webp",
-        name: "Integrate Nextauth",
-        description: "This blog contains all the links of my content from twitter & Instagram.",
-        keywords: ["Nextjs", "Expressjs", "Nodejs"],
-        date: Date.now()
-    },
-    {
-        id: '1',
-        thumbnailurl: "/notesbuddy.webp",
-        name: "Integrate Nextauth",
-        description: "This blog contains all the links of my content from twitter & Instagram.",
-        keywords: ["Nextjs", "Expressjs", "Nodejs"],
-        date: Date.now()
-    }
-]
 
-const Blogs = () => {
+const Blogs = async () => {
+    const blogs = await allBlogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 1)
     return (
-        <div className=" max-w-2xl space-y-8  mx-auto">
+        <div className=" max-w-2xl space-y-8 mx-8 md:mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-bold">Blogs</h3>
-                <div className=" grid grid-cols-2 gap-8">
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-8">
                     {
                         blogs.map((blog) => (
-                            <BlogCard key={blog.id} {...blog} />
+                            <BlogCard key={blog._raw.flattenedPath}
+                                id={blog._raw.flattenedPath}
+                                name={blog.title}
+                                description={blog.description}
+                                keywords={blog.keywords as string[]}
+                                date={blog.date}
+                                thumbnailurl={blog.thumbnail}
+                            />
                         ))
                     }
                 </div>

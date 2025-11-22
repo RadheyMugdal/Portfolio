@@ -2,7 +2,7 @@ import { Github, Linkedin, Twitter } from "lucide-react"
 
 const Footer = () => {
     return (
-        <div className=' py-24  max-w-2xl mx-auto space-y-2 '>
+        <div className=' py-24  max-w-2xl mx-8 md:mx-auto space-y-2 '>
             <div className="flex gap-4 items-center mx-auto w-fit ">
                 <Twitter size={16} />
                 <Github size={16} />

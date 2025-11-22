@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import 'tailwind-scrollbar-hide/v4';
-
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,6 +43,132 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer utilities {
+
+  /* -------------------------------
+   Global Typography Improvements
+-------------------------------- */
+  .prose {
+    @apply leading-8;
+  }
+
+  .prose h1 {
+    @apply text-4xl mt-8 mb-2 font-semibold tracking-tight;
+  }
+
+  /* Section Spacing */
+  .prose h2 {
+    @apply mt-8 mb-2 text-3xl font-semibold;
+  }
+
+  .prose h3 {
+    @apply mt-4 mb-2 text-2xl font-semibold;
+  }
+
+  .prose h4 {
+    @apply mt-4 mb-2 text-xl font-medium;
+  }
+
+  /* Paragraphs */
+  .prose p {
+    @apply text-base leading-8;
+  }
+
+  /* Links */
+  .prose a {
+    @apply text-indigo-400 hover:text-indigo-300 underline underline-offset-4;
+  }
+
+  /* -------------------------------
+   Blockquote
+-------------------------------- */
+  .prose blockquote {
+    @apply border-l-4 pl-6 py-1 italic my-4;
+  }
+
+  .prose blockquote p {
+    @apply my-4
+  }
+
+
+
+  /* -------------------------------
+   Code Blocks
+-------------------------------- */
+  .pre-wrapper {
+    @apply my-6 border rounded-xl overflow-hidden;
+  }
+
+  .code-header {
+    @apply px-4 py-2 text-sm font-medium flex items-center justify-between;
+  }
+
+  .code-header .lang {
+    @apply uppercase text-[11px] tracking-wider;
+  }
+
+  .code-header .dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .pre-wrapper pre {
+    @apply p-4 overflow-x-auto text-sm leading-7;
+  }
+
+  /* Inline code */
+  .prose code {
+    @apply px-1.5 py-0.5 rounded-md text-sm;
+  }
+
+  .prose ul li {
+    @apply my-0 leading-8
+  }
+
+  /* -------------------------------
+   Tables
+-------------------------------- */
+  .prose table {
+    @apply w-full border-collapse text-left;
+  }
+
+  .prose th {
+    @apply border-b py-3 font-semibold;
+  }
+
+  .prose td {
+    @apply border-b py-3;
+  }
+
+  /* -------------------------------
+   Images
+-------------------------------- */
+  .prose img {
+    @apply rounded-xl shadow-lg my-6;
+  }
+
+  .prose figure {
+    @apply text-center text-sm;
+  }
+
+  .prose hr {
+    @apply my-8
+  }
+
+  /* -------------------------------
+   Headings Anchors (#)
+-------------------------------- */
+  .prose h2:hover .anchor,
+  .prose h3:hover .anchor,
+  .prose h4:hover .anchor {
+    opacity: 1;
+  }
+
+  .anchor {
+    @apply ml-2 opacity-0 cursor-pointer;
+  }
+
 }
 
 :root {
@@ -118,6 +244,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

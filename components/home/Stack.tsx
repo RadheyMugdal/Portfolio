@@ -79,7 +79,7 @@ const skills = [
 const Stack = () => {
 
     return (
-        <div className=" max-w-2xl mx-auto">
+        <div className=" max-w-2xl mx-8 md:mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-bold">Stack</h3>
                 <div className="flex flex-wrap gap-2">

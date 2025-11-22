@@ -3,19 +3,19 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 
 const WorkExperience = () => {
     return (
-        <div className=" max-w-2xl mx-auto">
+        <div className=" max-w-2xl mx-8 md:mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-bold">Work Experience</h3>
                 <Accordion type="single" collapsible defaultValue="experience">
                     <AccordionItem value="experience" >
                         <AccordionTrigger className=" w-full hover:no-underline" >
                             <div className="flex  w-full gap-4">
-                                <div className="  size-18  items-center justify-center flex  rounded-sm bg-card">
+                                <div className="  md:size-18  items-center justify-center flex  rounded-sm bg-input">
                                     <Twitter />
                                 </div>
                                 <div className=" flex-1 flex  items-center justify-between">
                                     <div className=" h-full flex flex-col gap-1  justify-center">
-                                        <h4 className="font-medium ">Practiskill Pvt Ltd</h4>
+                                        <h4 className="font-semibold ">Practiskill Pvt Ltd</h4>
                                         <span className="text-xs opacity-60">Full Stack Developer</span>
                                     </div>
                                     <div className="flex gap-2">
