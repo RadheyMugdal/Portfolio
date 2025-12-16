@@ -36,7 +36,7 @@ const BlogCard = ({ id, thumbnailurl, name, description, keywords, date }: Props
                     </Link>
                 </CardTitle>
 
-                <div className="flex gap-2 flex-wrap">
+                <div className="flex gap-1 flex-wrap">
                     {
                         keywords.map((keyword) => (
                             <div key={keyword} className="bg-input/40 border border-dashed p-1  px-3 rounded-full text-xs ">

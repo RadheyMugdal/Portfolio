@@ -1,68 +1,74 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 type AnimationVariant =
-    | 'circle'
-    | 'circle-blur'
-    | 'gif'
-    | 'polygon';
+  | 'circle'
+  | 'circle-blur'
+  | 'gif'
+  | 'polygon';
 
 type StartPosition =
-    | 'center'
-    | 'top-left'
-    | 'top-right'
-    | 'bottom-left'
-    | 'bottom-right';
+  | 'center'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right';
 
 export interface ThemeToggleButtonProps {
-    theme?: 'light' | 'dark';
-    showLabel?: boolean;
-    variant?: AnimationVariant;
-    start?: StartPosition;
-    url?: string; // For gif variant
-    className?: string;
-    onClick?: () => void;
+  theme?: 'light' | 'dark';
+  showLabel?: boolean;
+  variant?: AnimationVariant;
+  start?: StartPosition;
+  url?: string; // For gif variant
+  className?: string;
+  onClick?: () => void;
 }
 
 export const ThemeToggleButton = ({
-    theme: themeProp,
-    showLabel = false,
-    variant = 'circle',
-    start = 'center',
-    url,
-    className,
-    onClick,
+  theme: themeProp,
+  showLabel = false,
+  variant = 'circle',
+  start = 'center',
+  url,
+  className,
+  onClick,
 }: ThemeToggleButtonProps) => {
-    const { theme: currentTheme, setTheme } = useTheme();
+  const { theme: currentTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-    // Use prop theme if provided, otherwise use current theme from next-themes
-    const theme = themeProp || currentTheme;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    const handleClick = useCallback(() => {
-        // Inject animation styles for this specific transition
-        const styleId = `theme-transition-${Date.now()}`;
-        const style = document.createElement('style');
-        style.id = styleId;
+  // Use prop theme if provided, otherwise use current theme from next-themes
+  // Default to 'dark' on server to match layout defaultTheme
+  const theme = mounted ? (themeProp || currentTheme) : (themeProp || 'dark');
 
-        // Generate animation CSS based on variant
-        let css = '';
-        const positions = {
-            center: 'center',
-            'top-left': 'top left',
-            'top-right': 'top right',
-            'bottom-left': 'bottom left',
-            'bottom-right': 'bottom right',
-        };
+  const handleClick = useCallback(() => {
+    // Inject animation styles for this specific transition
+    const styleId = `theme-transition-${Date.now()}`;
+    const style = document.createElement('style');
+    style.id = styleId;
 
-        if (variant === 'circle') {
-            const cx = start === 'center' ? '50' : start.includes('left') ? '0' : '100';
-            const cy = start === 'center' ? '50' : start.includes('top') ? '0' : '100';
-            css = `
+    // Generate animation CSS based on variant
+    let css = '';
+    const positions = {
+      center: 'center',
+      'top-left': 'top left',
+      'top-right': 'top right',
+      'bottom-left': 'bottom left',
+      'bottom-right': 'bottom right',
+    };
+
+    if (variant === 'circle') {
+      const cx = start === 'center' ? '50' : start.includes('left') ? '0' : '100';
+      const cy = start === 'center' ? '50' : start.includes('top') ? '0' : '100';
+      css = `
         @supports (view-transition-name: root) {
           ::view-transition-old(root) { 
             animation: none;
@@ -81,10 +87,10 @@ export const ThemeToggleButton = ({
           }
         }
       `;
-        } else if (variant === 'circle-blur') {
-            const cx = start === 'center' ? '50' : start.includes('left') ? '0' : '100';
-            const cy = start === 'center' ? '50' : start.includes('top') ? '0' : '100';
-            css = `
+    } else if (variant === 'circle-blur') {
+      const cx = start === 'center' ? '50' : start.includes('left') ? '0' : '100';
+      const cy = start === 'center' ? '50' : start.includes('top') ? '0' : '100';
+      css = `
         @supports (view-transition-name: root) {
           ::view-transition-old(root) { 
             animation: none;
@@ -106,8 +112,8 @@ export const ThemeToggleButton = ({
           }
         }
       `;
-        } else if (variant === 'gif' && url) {
-            css = `
+    } else if (variant === 'gif' && url) {
+      css = `
         @supports (view-transition-name: root) {
           ::view-transition-old(root) {
             animation: fade-out 0.4s ease-out;
@@ -140,8 +146,8 @@ export const ThemeToggleButton = ({
           }
         }
       `;
-        } else if (variant === 'polygon') {
-            css = `
+    } else if (variant === 'polygon') {
+      css = `
         @supports (view-transition-name: root) {
           ::view-transition-old(root) {
             animation: none;
@@ -167,72 +173,72 @@ export const ThemeToggleButton = ({
           }
         }
       `;
+    }
+
+    if (css) {
+      style.textContent = css;
+      document.head.appendChild(style);
+
+      // Clean up animation styles after transition
+      setTimeout(() => {
+        const styleEl = document.getElementById(styleId);
+        if (styleEl) {
+          styleEl.remove();
         }
+      }, 3000);
+    }
 
-        if (css) {
-            style.textContent = css;
-            document.head.appendChild(style);
+    // Toggle theme with View Transitions API
+    const toggleTheme = () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      onClick?.();
+    };
 
-            // Clean up animation styles after transition
-            setTimeout(() => {
-                const styleEl = document.getElementById(styleId);
-                if (styleEl) {
-                    styleEl.remove();
-                }
-            }, 3000);
-        }
+    // Use View Transitions API if available
+    if ('startViewTransition' in document) {
+      (document as any).startViewTransition(toggleTheme);
+    } else {
+      toggleTheme();
+    }
+  }, [onClick, variant, start, url, theme, setTheme]);
 
-        // Toggle theme with View Transitions API
-        const toggleTheme = () => {
-            const newTheme = theme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-            onClick?.();
-        };
-
-        // Use View Transitions API if available
-        if ('startViewTransition' in document) {
-            (document as any).startViewTransition(toggleTheme);
-        } else {
-            toggleTheme();
-        }
-    }, [onClick, variant, start, url, theme, setTheme]);
-
-    return (
-        <Button
-            variant="ghost"
-            size={showLabel ? 'default' : 'icon'}
-            onClick={handleClick}
-            className={cn(
-                'relative overflow-hidden transition-all',
-                showLabel && 'gap-2',
-                className
-            )}
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-        >
-            {(theme === 'dark' || theme === 'system') ? (
-                <Moon className="h-[1.2rem] w-[1.2rem]" />
-            ) : (
-                <Sun className="h-[1.2rem] w-[1.2rem]" />
-            )}
-            {showLabel && (
-                <span className="text-sm">
-                    {theme === 'light' ? 'Light' : 'Dark'}
-                </span>
-            )}
-        </Button>
-    );
+  return (
+    <Button
+      variant="ghost"
+      size={showLabel ? 'default' : 'icon'}
+      onClick={handleClick}
+      className={cn(
+        'relative overflow-hidden transition-all',
+        showLabel && 'gap-2',
+        className
+      )}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+    >
+      {(theme === 'dark' || theme === 'system') ? (
+        <Moon className="h-[1.2rem] w-[1.2rem]" />
+      ) : (
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
+      )}
+      {showLabel && (
+        <span className="text-sm">
+          {theme === 'light' ? 'Light' : 'Dark'}
+        </span>
+      )}
+    </Button>
+  );
 };
 
 // Export a helper hook for using with View Transitions API
 export const useThemeTransition = () => {
-    const startTransition = useCallback((updateFn: () => void) => {
-        if ('startViewTransition' in document) {
-            (document as any).startViewTransition(updateFn);
-        } else {
-            updateFn();
-        }
-    }, []);
+  const startTransition = useCallback((updateFn: () => void) => {
+    if ('startViewTransition' in document) {
+      (document as any).startViewTransition(updateFn);
+    } else {
+      updateFn();
+    }
+  }, []);
 
-    return { startTransition };
+  return { startTransition };
 };
 

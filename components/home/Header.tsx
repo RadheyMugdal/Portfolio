@@ -5,12 +5,19 @@ import { usePathname } from "next/navigation";
 import { HomeIcon, Boxes, FileText, Menu, X, Twitter, Github, Linkedin } from "lucide-react";
 import { ThemeToggleButton } from "../ui/mode-toggle";
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
 const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
     { name: "Projects", href: "/projects", icon: Boxes },
     { name: "Blogs", href: "/blogs", icon: FileText },
 ];
+
+const socials = [
+    { name: "twitter", logo: Twitter, href: "https://twitter.com/radheymugdal" },
+    { name: "github", logo: Github, href: "https://github.com/radheymugdal" },
+    { name: "linkedin", logo: Linkedin, href: "https://linkedin.com/in/radheymugdal" },
+]
 
 const Header = () => {
     const pathname = usePathname();
@@ -38,11 +45,10 @@ const Header = () => {
                             <li key={item.href} className="relative group">
                                 <a
                                     href={item.href}
-                                    className={`flex items-center gap-1.5 text-sm font-medium transition-opacity
+                                    className={`flex items-center gap-1.5 text-sm  transition-opacity
                     ${active ? "opacity-100" : "opacity-70 group-hover:opacity-100"}
                   `}
                                 >
-                                    <Icon size={17} className="mb-[1px]" />
                                     {item.name}
                                 </a>
 
@@ -60,9 +66,17 @@ const Header = () => {
                 {/* TOGGLE ON RIGHT */}
                 <div className="flex gap-4">
                     <div className="flex gap-4 items-center">
-                        <Twitter size={16} />
-                        <Github size={16} />
-                        <Linkedin size={16} />
+                        {
+                            socials.map((social) => {
+                                const Icon = social.logo;
+                                return (
+                                    <a key={social.name} href={social.href} className=" opacity-75 hover:opacity-100 transition-colors duration-300">
+                                        <Icon size={16} />
+                                    </a>
+                                )
+                            })
+                        }
+
                     </div>
                     <Separator orientation="vertical" className="  h-full" />
                     <ThemeToggleButton variant="polygon" />

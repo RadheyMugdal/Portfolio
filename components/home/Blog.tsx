@@ -4,6 +4,7 @@ import { Button } from "../ui/button"
 import { ExternalLink } from "lucide-react"
 import BlogCard from "../blog/BlogCard"
 import { allBlogs } from "@/.contentlayer/generated"
+import Link from "next/link"
 
 
 const Blogs = async () => {
@@ -28,9 +29,11 @@ const Blogs = async () => {
                 </div>
             </div>
             <div className="flex items-center justify-center">
-                <Button variant={"outline"} className=" ">
-                    See all Blogs
-                </Button>
+                <Link href="/blogs">
+                    <Button variant={"outline"} className=" ">
+                        See all Blogs
+                    </Button>
+                </Link>
             </div>
         </div>
     )

@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import NavBar from "@/components/home/NavBar";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
+import { Toaster } from "@/components/ui/sonner";
+import SmoothScrolling from "@/components/global/SmoothScrolling";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -30,19 +28,23 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body className=" relative">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
-          {/* <NavBar />  */}
-        </body>
+        <SmoothScrolling>
+          <body className={` relative ${inter.variable} ${inter.className}`}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+
+              {children}
+              <Footer />
+              <Toaster />
+            </ThemeProvider>
+            {/* <NavBar />  */}
+          </body>
+        </SmoothScrolling>
       </html>
     </>
   );

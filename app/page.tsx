@@ -1,4 +1,5 @@
 import Blogs from "@/components/home/Blog";
+import BookCall from "@/components/home/BookCall";
 import Footer from "@/components/home/Footer";
 import GithubActivity from "@/components/home/GithubActivity";
 import Header from "@/components/home/Header";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Projects />
       <GithubActivity />
       <Blogs />
+      <BookCall />
       {/* <NavBar /> */}
     </div>
   );
