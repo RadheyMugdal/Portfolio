@@ -248,4 +248,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .scroll-entry {
+    opacity: 0;
+  }
 }

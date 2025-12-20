@@ -1,9 +1,10 @@
 "use client"
-import React from 'react'
+import React, { useRef } from 'react'
 import { Button } from '../ui/button'
 import { CalendarDays } from 'lucide-react'
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
+import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in';
 
 const BookCall = () => {
     useEffect(() => {
@@ -12,9 +13,11 @@ const BookCall = () => {
             cal("ui", { "cssVarsPerTheme": { "light": { "cal-brand": "#171717" }, "dark": { "cal-brand": "#E5E5E5" } }, "hideEventTypeDetails": false, "layout": "month_view" });
         })();
     }, [])
+    const containerRef = useRef<HTMLDivElement>(null)
+    useScrollFadeIn(containerRef)
     return (
-        <div className=' max-w-2xl mx-8 md:mx-auto rounded-2xl overflow-hidden  border'>
-            <div className="min-h-[200px] w-full p-12  bg-background  relative text-foreground">
+        <div className=' max-w-2xl mx-8 md:mx-auto rounded-2xl overflow-hidden  border' ref={containerRef}>
+            <div className="min-h-[200px] w-full p-12  bg-background  relative text-foreground ">
 
                 <div
                     className="absolute inset-0 z-0 pointer-events-none text-foreground/10"
@@ -29,9 +32,9 @@ const BookCall = () => {
                     }}
                 />
 
-                <div className=' relative z-10 space-y-8 flex flex-col items-center'>
-                    <h4 className=' italic font-semibold text-sm md:text-base text-center'> "You scrolled all the way down… might as well say hi."</h4>
-                    <Button className=' flex gap-2' data-cal-namespace="quick-chat"
+                <div className=' relative z-10 space-y-8 flex flex-col items-center scroll-entry'>
+                    <h4 className=' italic font-semibold text-sm md:text-base text-center '> "You scrolled all the way down… might as well say hi."</h4>
+                    <Button className='flex gap-2' data-cal-namespace="quick-chat"
                         data-cal-link="radhey-mugdal-jddeix/quick-chat"
 
                         data-cal-config='{"layout":"month_view","theme":"auto"}'>

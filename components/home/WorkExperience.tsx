@@ -1,5 +1,11 @@
+"use client"
 import { Twitter } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "@/plugins"
+import { useRef } from "react"
+import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
 const experiences = [{
     company: "PractiSkill Pvt. Ltd.",
     role: "Full Stack Developer",
@@ -47,14 +53,16 @@ const highlightText = (text: string, highlights: string[]) => {
 }
 
 const WorkExperience = () => {
+    const containerRef = useRef<HTMLDivElement>(null)
+    useScrollFadeIn(containerRef)
     return (
-        <div className=" max-w-2xl mx-4 md:mx-auto">
+        <div className=" max-w-2xl mx-4 md:mx-auto" ref={containerRef}>
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold">Work Experience</h3>
-                <Accordion type="single" collapsible defaultValue="experience">
+                <h3 className="text-xl font-bold scroll-entry">Work Experience</h3>
+                <Accordion type="single" className="" collapsible defaultValue="experience">
                     {
                         experiences.map((experience) => (
-                            <AccordionItem key={experience.company} value="experience" >
+                            <AccordionItem key={experience.company} value="experience" className="scroll-entry" >
                                 <AccordionTrigger className=" w-full hover:no-underline" >
                                     <div className="flex  w-full gap-4">
                                         <div className="  md:size-18  size-12  items-center justify-center flex  rounded-sm bg-input">
@@ -66,7 +74,7 @@ const WorkExperience = () => {
                                                 <span className="text-xs opacity-60">{experience.role}</span>
 
                                             </div>
-                                            <div className="hidden md:flex gap-2">
+                                            <div className="hidden  md:flex gap-2">
                                                 <div className=" h-full flex flex-col  gap-1 justify-center">
                                                     <h4 className=" opacity-60  ">{experience.duration}</h4>
                                                     <span className="text-xs   opacity-60 ">{experience.location}</span>
@@ -82,7 +90,7 @@ const WorkExperience = () => {
                                         <span className="text-xs   opacity-60 ">{experience.location}</span>
                                     </div>
                                 </div>
-                                <AccordionContent className="  space-y-4 ">
+                                <AccordionContent className="space-y-4 ">
 
                                     <div className=" px-0 space-y-1">
                                         <h4 className=" text-base md:text-lg font-bold">Technologies used</h4>

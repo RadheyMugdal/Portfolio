@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Send } from "lucide-react"
 import { toast } from "sonner"
-import { useState } from "react"
+import { useRef, useState } from "react"
+import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
 
 const formSchema = z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters long" }),
@@ -20,6 +21,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 const ContactPage = () => {
+    const containerRef = useRef<HTMLDivElement>(null)
+    useScrollFadeIn(containerRef)
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -50,12 +53,12 @@ const ContactPage = () => {
     }
 
     return (
-        <div className="mx-auto max-w-2xl pt-28 px-8 space-y-12">
-            <div className="space-y-3 text-center">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">
+        <div className="mx-auto max-w-2xl pt-28 px-8 space-y-12" ref={containerRef}>
+            <div className="space-y-3 text-center scroll-entry">
+                <h1 className="text-3xl scroll-entry md:text-4xl lg:text-5xl font-semibold">
                     Contact
                 </h1>
-                <p className="opacity-60 text-sm md:text-base">
+                <p className="opacity-60 scroll-entry text-sm md:text-base">
                     I will get back to you as soon as possible.
                 </p>
             </div>
@@ -63,7 +66,7 @@ const ContactPage = () => {
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-4 max-w-lg mx-auto"
+                    className="space-y-4 max-w-lg mx-auto scroll-entry"
                 >
                     <FormField
                         control={form.control}

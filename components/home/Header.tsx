@@ -6,9 +6,9 @@ import { HomeIcon, Boxes, FileText, Menu, X, Twitter, Github, Linkedin } from "l
 import { ThemeToggleButton } from "../ui/mode-toggle";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
+import Image from "next/image";
 
 const navItems = [
-    { name: "Home", href: "/", icon: HomeIcon },
     { name: "Projects", href: "/projects", icon: Boxes },
     { name: "Blogs", href: "/blogs", icon: FileText },
 ];
@@ -24,7 +24,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="fixed  max-w-3xl mx-auto top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/20  border-b">
+        <div className="fixed  max-w-3xl mx-auto top-0 px-8 left-0 right-0 z-50 backdrop-blur-xl bg-background/20   ">
             <div className=" h-16 px-4 flex items-center justify-between">
 
                 {/* MOBILE MENU BUTTON */}
@@ -37,6 +37,9 @@ const Header = () => {
 
                 {/* DESKTOP NAV */}
                 <ul className="hidden md:flex items-center gap-6">
+                    <Link href="/">
+                        <Image src="/logo1.png" alt="logo" width={40} height={40} className="dark:invert" />
+                    </Link>
                     {navItems.map((item) => {
                         const Icon = item.icon;
                         const active = pathname === item.href;
@@ -52,12 +55,6 @@ const Header = () => {
                                     {item.name}
                                 </a>
 
-                                {/* Underline animation */}
-                                <span
-                                    className={`absolute left-0 -bottom-1 h-[2px] bg-black dark:bg-white rounded-full transition-all duration-300 
-                    ${active ? "w-full" : "w-0 group-hover:w-full"}
-                  `}
-                                ></span>
                             </li>
                         );
                     })}
@@ -70,7 +67,7 @@ const Header = () => {
                             socials.map((social) => {
                                 const Icon = social.logo;
                                 return (
-                                    <a key={social.name} href={social.href} className=" opacity-75 hover:opacity-100 transition-colors duration-300">
+                                    <a key={social.name} href={social.href} className=" opacity-60 hover:opacity-100 transition-colors duration-300">
                                         <Icon size={16} />
                                     </a>
                                 )

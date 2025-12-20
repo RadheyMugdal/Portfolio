@@ -83,23 +83,22 @@ const skills = [
 const Stack = () => {
     const stackHeaderRef = useRef<HTMLDivElement>(null);
     useGSAP(() => {
-        const tl = gsap.timeline()
-        tl.from(stackHeaderRef.current!, {
+        gsap.from(stackHeaderRef.current!, {
             opacity: 0,
             filter: 'blur(5px)',
-            duration: 0.3,
+            duration: 0.1,
             stagger: 0.05,
         })
     })
     return (
         <div className=" max-w-2xl mx-4 md:mx-auto">
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold" ref={stackHeaderRef}>Stack</h3>
-                <div className="flex flex-wrap gap-2">
+                <h3 className="text-xl font-bold entry" ref={stackHeaderRef}>Stack</h3>
+                <div className="flex flex-wrap gap-2  ">
                     {
                         skills.map((skill) => (
-                            <Tooltip key={skill.name}>
-                                <TooltipTrigger>
+                            <Tooltip key={skill.name} >
+                                <TooltipTrigger className="entry">
                                     <div key={skill.name} className=" hover:bg-card rounded-sm flex items-center justify-center  size-12 ">
                                         {skill.icon}
                                     </div>
