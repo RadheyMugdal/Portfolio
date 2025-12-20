@@ -24,8 +24,8 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="fixed max-w-3xl mx-auto top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/20  border-b">
-            <div className=" h-16 px-6 flex items-center justify-between">
+        <div className="fixed  max-w-3xl mx-auto top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/20  border-b">
+            <div className=" h-16 px-4 flex items-center justify-between">
 
                 {/* MOBILE MENU BUTTON */}
                 <button
@@ -94,6 +94,7 @@ const Header = () => {
                             return (
                                 <a
                                     key={item.href}
+                                    target="_blank"
                                     href={item.href}
                                     onClick={() => setOpen(false)}
                                     className={`flex items-center gap-2 text-sm font-medium transition

@@ -10,7 +10,7 @@ import Link from "next/link"
 const Blogs = async () => {
     const blogs = await allBlogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 1)
     return (
-        <div className=" max-w-2xl space-y-8 mx-8 md:mx-auto">
+        <div className=" max-w-2xl space-y-8 mx-4 md:mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-bold">Blogs</h3>
                 <div className=" grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -28,23 +28,23 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <SmoothScrolling>
-          <body className={` relative ${inter.variable} ${inter.className}`}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Header />
+        <body className={` relative ${inter.variable} ${inter.className}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
 
+            <SmoothScrolling>
               {children}
               <Footer />
-              <Toaster />
-            </ThemeProvider>
-            {/* <NavBar />  */}
-          </body>
-        </SmoothScrolling>
+            </SmoothScrolling>
+            <Toaster />
+          </ThemeProvider>
+          {/* <NavBar />  */}
+        </body>
       </html>
     </>
   );

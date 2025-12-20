@@ -39,7 +39,7 @@ export const projects = [
         name: "Wavely",
         description: "Wavely is an AI-powered website builder that lets you create Next.js websites using natural language prompts and export clean, production-ready code.",
         githubUrl: "https://github.com/RadheyMugdal/ai-website-builder",
-        thumbnailUrl: "/notesbuddy.webp",
+        thumbnailUrl: "/projects/wavely.png",
         webUrl: "https://wavelybuilder.vercel.app",
         tech_stack: [
             {

@@ -22,16 +22,15 @@ type Props = {
 const ProjectCard = ({ description, githubUrl, id, name, tech_stack, webUrl, thumbnailUrl }: Props) => {
     return (
         <Card key={id} className=" pt-0! overflow-hidden border-none ">
-            <div className=" w-full h-52 ">
+            <div className=" w-full h-[200px]  relative">
                 <Image
                     src={thumbnailUrl}
-                    width={1028}
-                    height={780}
+                    fill
                     alt="mockup"
-                    className=" w-full h-full object-cover"
+                    className=" object-cover"
                 />
             </div>
-            <div className=' flex flex-col justify-between h-full'>
+            <div className=' flex flex-col flex-1 justify-between  gap-8'>
                 <CardHeader className=" space-y-1" >
                     <CardTitle className=" text-xl flex items-center justify-between">
                         {name}

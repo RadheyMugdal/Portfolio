@@ -1,4 +1,8 @@
+"use client"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import { useRef } from "react";
 
 const skills = [
     {
@@ -77,11 +81,20 @@ const skills = [
 ]
 
 const Stack = () => {
-
+    const stackHeaderRef = useRef<HTMLDivElement>(null);
+    useGSAP(() => {
+        const tl = gsap.timeline()
+        tl.from(stackHeaderRef.current!, {
+            opacity: 0,
+            filter: 'blur(5px)',
+            duration: 0.3,
+            stagger: 0.05,
+        })
+    })
     return (
-        <div className=" max-w-2xl mx-8 md:mx-auto">
+        <div className=" max-w-2xl mx-4 md:mx-auto">
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold">Stack</h3>
+                <h3 className="text-xl font-bold" ref={stackHeaderRef}>Stack</h3>
                 <div className="flex flex-wrap gap-2">
                     {
                         skills.map((skill) => (

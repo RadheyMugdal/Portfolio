@@ -7,7 +7,7 @@ const socials = [
 
 const Footer = () => {
     return (
-        <div className=' py-32  max-w-2xl mx-8 md:mx-auto space-y-2 '>
+        <div className=' py-32  max-w-2xl mx-4 md:mx-auto space-y-2 '>
             <div className="flex gap-4 items-center mx-auto w-fit ">
                 {
                     socials.map((social) => (
