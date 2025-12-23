@@ -3,13 +3,20 @@ import { Button } from '@/components/ui/button'
 import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
 import { Download } from 'lucide-react'
 import dynamic from 'next/dynamic'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 const ResumeClient = dynamic(() => import('./ResumeClient'), {
     ssr: false,
 })
 
 export default function ResumePage() {
+    useEffect(() => {
+        document.title = "Resume | Radhey Mugdal"
+        const metaDescription = document.querySelector('meta[name="description"]')
+        if (metaDescription) {
+            metaDescription.setAttribute('content', 'View the resume of Radhey Mugdal, Software Engineer. Explore work experience, skills, education, and professional background.')
+        }
+    }, [])
     const containerRef = useRef<HTMLDivElement>(null)
     useScrollFadeIn(containerRef)
     return (

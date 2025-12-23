@@ -13,7 +13,32 @@ export const generateMetadata = async ({ params }: BlogPageParams) => {
     const { slug } = await params
     const blog = allBlogs.find((blog) => blog._raw.flattenedPath === slug)
     if (!blog) throw new Error(`Post not found for slug: ${slug}`)
-    return { title: blog.title }
+
+    return {
+        title: blog.title,
+        description: blog.description || `Read ${blog.title} by Radhey Mugdal. Learn about ${blog.title} and explore more insights on web development and software engineering.`,
+        openGraph: {
+            title: blog.title,
+            description: blog.description || `Read ${blog.title} by Radhey Mugdal.`,
+            images: [
+                {
+                    url: blog.thumbnail,
+                    width: 1000,
+                    height: 1000,
+                    alt: blog.title,
+                },
+            ],
+            type: "article",
+            publishedTime: blog.date,
+            authors: ["Radhey Mugdal"],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blog.title,
+            description: blog.description || `Read ${blog.title} by Radhey Mugdal.`,
+            images: [blog.thumbnail],
+        },
+    }
 }
 
 const BlogPage = async ({ params }: BlogPageParams) => {

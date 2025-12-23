@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Send } from "lucide-react"
 import { toast } from "sonner"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
 
 const formSchema = z.object({
@@ -21,6 +21,14 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 const ContactPage = () => {
+    useEffect(() => {
+        document.title = "Contact | Radhey Mugdal"
+        const metaDescription = document.querySelector('meta[name="description"]')
+        if (metaDescription) {
+            metaDescription.setAttribute('content', 'Get in touch with Radhey Mugdal. Send a message for collaborations, project inquiries, or just to say hello. I will get back to you as soon as possible.')
+        }
+    }, [])
+
     const containerRef = useRef<HTMLDivElement>(null)
     useScrollFadeIn(containerRef)
     const form = useForm<FormValues>({

@@ -81,7 +81,7 @@ const skills = [
 ]
 
 const Stack = () => {
-    const stackHeaderRef = useRef<HTMLDivElement>(null);
+    const stackHeaderRef = useRef<HTMLHeadingElement>(null);
     useGSAP(() => {
         gsap.from(stackHeaderRef.current!, {
             opacity: 0,

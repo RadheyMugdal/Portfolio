@@ -3,8 +3,16 @@ import ProjectCard from '@/components/project/ProjectCard'
 import { projects } from '@/data/projects'
 import { useRef } from 'react'
 import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
+import { useEffect } from 'react'
 
 const ProjectsPage = () => {
+    useEffect(() => {
+        document.title = "Projects | Radhey Mugdal"
+        const metaDescription = document.querySelector('meta[name="description"]')
+        if (metaDescription) {
+            metaDescription.setAttribute('content', 'Explore the portfolio projects of Radhey Mugdal. Browse through web applications, tools, and innovative software solutions built with modern technologies.')
+        }
+    }, [])
     const containerRef = useRef<HTMLDivElement>(null)
     useScrollFadeIn(containerRef)
     return (
