@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { allBlogs } from '@/.contentlayer/generated'
+import { allBlogs } from 'content-collections'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://radheymugdal.com'
@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Blog routes
   const blogRoutes = allBlogs.map((blog) => ({
-    url: `${baseUrl}/blog/${blog._raw.flattenedPath}`,
+    url: `${baseUrl}/blog/${blog._meta.path}`,
     lastModified: new Date(blog.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,

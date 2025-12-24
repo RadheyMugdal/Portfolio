@@ -1,9 +1,10 @@
-import { format, parseISO } from 'date-fns'
-import { allBlogs } from 'contentlayer/generated'
+import { format } from 'date-fns'
+import { allBlogs } from 'content-collections'
 import Image from 'next/image'
+import { MDXContent } from '@content-collections/mdx/react'
 
 
-export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }))
+export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._meta.path }))
 
 interface BlogPageParams {
     params: Promise<{ slug: string }>
@@ -11,7 +12,7 @@ interface BlogPageParams {
 
 export const generateMetadata = async ({ params }: BlogPageParams) => {
     const { slug } = await params
-    const blog = allBlogs.find((blog) => blog._raw.flattenedPath === slug)
+    const blog = allBlogs.find((blog) => blog._meta.path === slug)
     if (!blog) throw new Error(`Post not found for slug: ${slug}`)
 
     return {
@@ -43,15 +44,15 @@ export const generateMetadata = async ({ params }: BlogPageParams) => {
 
 const BlogPage = async ({ params }: BlogPageParams) => {
     const { slug } = await params
-    const post = allBlogs.find((blog) => blog._raw.flattenedPath === slug)
+    const post = allBlogs.find((blog) => blog._meta.path === slug)
     if (!post) throw new Error(`Post not found for slug: ${slug}`)
 
     return (
         <article className="mx-8 md:mx-auto space-y-4 max-w-2xl py-8 pt-28">
             <div className=' w-full '>
                 <Image src={post.thumbnail} alt={post.title} width={1000} height={1000} className='w-full h-auto rounded-xl object-cover' />
-                <time dateTime={post.date} className="mb-1 text-xs  text-end w-full opacity-60">
-                    {format(parseISO(post.date), 'LLLL d, yyyy')}
+                <time dateTime={post.date.toISOString()} className="mb-1 text-xs  text-end w-full opacity-60">
+                    {format(post.date, 'LLLL d, yyyy')}
                 </time>
             </div>
             <div className=' space-y-2 '>
@@ -62,8 +63,8 @@ const BlogPage = async ({ params }: BlogPageParams) => {
                     <p className=' text-base  opacity-75'>{post.description}</p>
                 </div>
             </div>
-            <div className=' prose   dark:prose-invert  '>
-                <div className="" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+            <div className='prose prose-left dark:prose-invert max-w-none [&_pre]:text-left [&_code]:text-left [&_pre]:mx-0 [&_pre]:max-w-none'>
+                <MDXContent code={post.mdx} />
             </div>
         </article>
     )

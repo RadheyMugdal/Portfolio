@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef } from 'react'
 import BlogCard from './BlogCard'
-import { Blog } from '@/.contentlayer/generated'
+import type { Blog } from 'content-collections'
 import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
 
 const Blogs = ({ blogs }: { blogs: Blog[] }) => {
@@ -13,12 +13,12 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
       <div className=' grid grid-cols-1 md:grid-cols-2 gap-8 scroll-entry'>
         {
           blogs.map((blog) => (
-            <BlogCard key={blog._raw.flattenedPath}
-              id={blog._raw.flattenedPath}
+            <BlogCard key={blog._meta.path}
+              id={blog._meta.path}
               date={blog.date}
               name={blog.title}
               description={blog.description}
-              keywords={blog.keywords as string[]}
+              keywords={blog.keywords}
               thumbnailurl={blog.thumbnail}
             />
           ))

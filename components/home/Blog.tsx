@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Button } from "../ui/button"
 import { ExternalLink } from "lucide-react"
 import BlogCard from "../blog/BlogCard"
-import { allBlogs, Blog } from "@/.contentlayer/generated"
+import { allBlogs, type Blog } from "content-collections"
 import Link from "next/link"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
@@ -20,11 +20,11 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                 <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 scroll-entry">
                     {
                         blogs.map((blog) => (
-                            <BlogCard key={blog._raw.flattenedPath}
-                                id={blog._raw.flattenedPath}
+                            <BlogCard key={blog._meta.path}
+                                id={blog._meta.path}
                                 name={blog.title}
                                 description={blog.description}
-                                keywords={blog.keywords as string[]}
+                                keywords={blog.keywords}
                                 date={blog.date}
                                 thumbnailurl={blog.thumbnail}
                             />

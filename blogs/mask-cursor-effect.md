@@ -63,7 +63,7 @@ It will look something like below.
 
 ![Mask cursor step 1](/mask-cursor-effect-step-1.png)
 
-<!-- PLACE IMAGE HERE -->
+{/* PLACE IMAGE HERE */}
 <br/>
 <br/> 
 
@@ -108,7 +108,7 @@ export default MaskCursor;
 Let see how it looks.
 ![Mask cursor step 1](/mask-cursor-effect-step-2.png)
 
-<!-- PLACE IMAGE HERE -->
+{/* PLACE IMAGE HERE */}
 <br/>
 <br/>
 
@@ -194,7 +194,7 @@ export default MaskCursor;
 ```
 ![Mask cursor step 1](/mask-cursor-effect-step-3.png)
 
-<!-- PLACE IMAGE HERE -->
+{/* PLACE IMAGE HERE */}
 <br/>
 <br/>
 

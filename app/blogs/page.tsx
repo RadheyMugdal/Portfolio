@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { allBlogs } from '@/.contentlayer/generated'
+import { allBlogs } from 'content-collections'
 import Blogs from '@/components/blog/Blogs'
 
 export const metadata: Metadata = {
