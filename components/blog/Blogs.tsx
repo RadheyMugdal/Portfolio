@@ -15,7 +15,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
           blogs.map((blog) => (
             <BlogCard key={blog._meta.path}
               id={blog._meta.path}
-              date={blog.date}
+              date={blog.date.toISOString()}
               name={blog.title}
               description={blog.description}
               keywords={blog.keywords}
