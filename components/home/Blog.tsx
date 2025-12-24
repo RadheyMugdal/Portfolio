@@ -25,7 +25,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                                 name={blog.title}
                                 description={blog.description}
                                 keywords={blog.keywords}
-                                date={blog.date}
+                                date={blog.date.toISOString()}
                                 thumbnailurl={blog.thumbnail}
                             />
                         ))
