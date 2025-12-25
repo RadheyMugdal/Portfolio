@@ -38,7 +38,7 @@ const Header = () => {
                 {/* DESKTOP NAV */}
                 <ul className="hidden md:flex items-center gap-6">
                     <Link href="/">
-                        <Image src="/logo1.png" alt="logo" width={40} height={40} className="dark:invert" />
+                        <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert" />
                     </Link>
                     {navItems.map((item) => {
                         const Icon = item.icon;

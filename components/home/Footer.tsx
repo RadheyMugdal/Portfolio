@@ -15,7 +15,7 @@ const Footer = () => {
     return (
         <div className=' pt-32 pb-16  max-w-2xl mx-4 md:mx-auto space-y-1 ' ref={containerRef}>
             <div className="scroll-entry">
-                <Image src="/logo1.png" alt="logo" width={40} height={40} className="dark:invert mx-auto " />
+                <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert mx-auto " />
             </div>
             <p className=" text-center text-sm text-foreground/60 scroll-entry">Design and Developed by{" "}
                 <span className="font-medium text-foreground">Radhey Mugdal</span>
