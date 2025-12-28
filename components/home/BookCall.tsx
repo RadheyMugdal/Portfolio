@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef } from 'react'
+import { useRef } from 'react';
 import { Button } from '../ui/button'
 import { CalendarDays } from 'lucide-react'
 import { getCalApi } from "@calcom/embed-react";

@@ -1,10 +1,7 @@
-"use client"
-import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+"use client";
 import { Button } from "../ui/button"
-import { ExternalLink } from "lucide-react"
 import BlogCard from "../blog/BlogCard"
-import { allBlogs, type Blog } from "content-collections"
+import { type Blog } from "content-collections";
 import Link from "next/link"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"

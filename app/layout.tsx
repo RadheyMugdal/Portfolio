@@ -87,7 +87,6 @@ export default function RootLayout({
             </SmoothScrolling>
             <Toaster />
           </ThemeProvider>
-          {/* <NavBar />  */}
         </body>
       </html>
     </>

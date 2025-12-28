@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { HomeIcon, Boxes, FileText, Menu, X, Twitter, Github, Linkedin } from "lucide-react";
+import { Boxes, FileText, Menu, X, Twitter, Github, Linkedin } from "lucide-react";
 import { ThemeToggleButton } from "../ui/mode-toggle";
 import { Separator } from "../ui/separator";
 import Link from "next/link";

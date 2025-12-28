@@ -1,9 +1,6 @@
-"use client"
+"use client";
 import { Twitter } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
-import { ScrollTrigger } from "@/plugins"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
 const experiences = [{

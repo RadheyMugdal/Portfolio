@@ -1,8 +1,5 @@
-"use client"
-import gsap from "gsap"
-import { useGSAP } from "@gsap/react";
+"use client";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
-import { useRef } from "react";
 
 const skills = [
     {
@@ -86,11 +83,11 @@ const Stack = () => {
         <div className=" max-w-2xl mx-4 md:mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-bold entry">Stack</h3>
-                <div className="flex flex-wrap gap-2  ">
+                <div className="flex flex-wrap gap-2 entry  ">
                     {
                         skills.map((skill) => (
                             <Tooltip key={skill.name} >
-                                <TooltipTrigger className="entry">
+                                <TooltipTrigger className="">
                                     <div key={skill.name} className=" hover:bg-card rounded-sm flex items-center justify-center  size-12 ">
                                         {skill.icon}
                                     </div>

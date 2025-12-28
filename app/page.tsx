@@ -11,7 +11,7 @@ import Stack from "@/components/home/Stack";
 import WorkExperience from "@/components/home/WorkExperience";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Radhey Mugdal - Software Engineer",
   description: "Welcome to the portfolio of Radhey Mugdal, a Software Engineer. Explore my work experience, tech stack, projects, and latest blog posts.",
   keywords: ["Radhey Mugdal", "Software Engineer", "Portfolio", "Web Developer", "Full Stack"],
   openGraph: {

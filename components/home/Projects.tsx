@@ -1,15 +1,8 @@
-"use client"
-import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+"use client";
 import { Button } from "../ui/button"
-import { Github, Globe } from "lucide-react"
 import Link from "next/link"
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 import ProjectCard from "../project/ProjectCard"
 import { projects as projectData } from "@/data/projects"
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
-import { ScrollTrigger } from "@/plugins"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
 

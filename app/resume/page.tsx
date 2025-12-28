@@ -1,7 +1,5 @@
-"use client"
-import { Button } from '@/components/ui/button'
+"use client";
 import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
-import { Download } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useRef, useEffect } from 'react'
 
