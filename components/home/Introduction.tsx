@@ -28,7 +28,7 @@ const Introduction = () => {
     })
   })
   return (
-    <div className=" max-w-2xl mx-4 md:mx-auto   space-y-12 ">
+    <div className=" max-w-2xl mx-4 md:mx-auto   space-y-8 ">
       <div className=" pt-28 flex items-center justify-between">
         <div className="flex flex-col gap-1" >
           <h1 className=" text-2xl md:text-5xl font-semibold entry">Hi, Radhey here</h1>

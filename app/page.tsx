@@ -25,7 +25,7 @@ export default async function HomePage() {
   const blogs = await allBlogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 1)
 
   return (
-    <div className="relative space-y-16">
+    <div className="relative space-y-12">
       <Introduction />
       <Stack />
       <WorkExperience />
