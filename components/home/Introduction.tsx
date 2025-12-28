@@ -31,7 +31,7 @@ const Introduction = () => {
     <div className=" max-w-2xl mx-4 md:mx-auto   space-y-12 ">
       <div className=" pt-28 flex items-center justify-between">
         <div className="flex flex-col gap-1" >
-          <h1 className=" text-2xl md:text-5xl font-bold entry">Hi, Radhey here</h1>
+          <h1 className=" text-2xl md:text-5xl font-semibold entry">Hi, Radhey here</h1>
           <p className=" text-sm   md:text-lg text-foreground/60 entry">Full Stack Web Developer</p>
         </div>
         <Image src={"/galaxy.png"} width={100} height={100} className=" size-18 entry md:size-32" alt="img" />

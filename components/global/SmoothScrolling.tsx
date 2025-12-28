@@ -1,25 +1,28 @@
 "use client";
-import gsap from 'gsap'
-import { useGSAP } from "@gsap/react";
-import { ScrollSmoother, ScrollTrigger } from "@/plugins";
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 
 function SmoothScrolling({ children }: { children: any }) {
-    useGSAP(() => {
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
-        ScrollSmoother.create({
-            wrapper: document.getElementById("scroll-wrapper")!,
-            content: document.getElementById("scroll-content")!,
-            smooth: 1,
-            smoothTouch: 0.1
-        })
-    })
-    return (
-        <div id='scroll-wrapper'>
-            <div id='scroll-content'>
-                {children}
-            </div>
-        </div>
-    );
+    useEffect(() => {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            lerp: 0.1,
+        });
+
+        function raf(time: number) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        return () => {
+            lenis.destroy();
+        };
+    }, []);
+
+    return <>{children}</>;
 }
 
 export default SmoothScrolling;
