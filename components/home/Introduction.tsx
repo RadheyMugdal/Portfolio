@@ -10,10 +10,18 @@ import gsap from "gsap"
 
 const Introduction = () => {
   useGSAP(() => {
-    gsap.from('.entry', {
+    // Immediately set initial hidden state to prevent flash
+    gsap.set('.entry', {
       y: 40,
       filter: 'blur(10px)',
       opacity: 0,
+    })
+
+    // Then animate to final state
+    gsap.to('.entry', {
+      y: 0,
+      filter: 'blur(0px)',
+      opacity: 1,
       duration: 0.8,
       stagger: 0.1,
     })
