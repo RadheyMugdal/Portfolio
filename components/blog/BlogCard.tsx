@@ -10,7 +10,6 @@ import React, { useRef } from "react";
 import { Badge } from "../ui/badge";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -40,7 +39,7 @@ const BlogCard = ({
   return (
     <Card
       key={id}
-      className="pt-3 overflow-hidden border-none cursor-pointer"
+      className="pt-3 overflow-hidden  cursor-pointer"
       ref={cardRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -71,9 +70,7 @@ const BlogCard = ({
           />
         </CardTitle>
 
-        <CardDescription className=" opacity-60 mt-2">
-          {description}
-        </CardDescription>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter className="mt-full px-4">
         <div className="flex gap-1 flex-wrap">
