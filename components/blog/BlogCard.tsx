@@ -75,8 +75,7 @@ const BlogCard = ({
           {description}
         </CardDescription>
       </CardHeader>
-      <CardContent className=""></CardContent>
-      <CardFooter className="mt-full">
+      <CardFooter className="mt-full px-4">
         <div className="flex gap-1 flex-wrap">
           {keywords.map((keyword, index) => (
             <Badge key={index}>{keyword}</Badge>
