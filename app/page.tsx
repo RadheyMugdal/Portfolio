@@ -30,7 +30,9 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const blogs = await allBlogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 1)
+  const blogs = await allBlogs
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
   return (
     <div className="relative space-y-12">
