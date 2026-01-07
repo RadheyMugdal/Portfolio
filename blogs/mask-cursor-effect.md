@@ -1,14 +1,13 @@
 ---
-title: Mask cursor effect
+title: Create a Stunning Mask Cursor Reveal Effect with React and Framer Motion
 date: 2025-04-13
-description: A step-by-step guide to building a custom mask cursor effect using React, Framer Motion, and Tailwind CSS.
+description: Learn how to build a custom mask cursor effect that reveals hidden content on hover using React, Framer Motion, and Tailwind CSS.
 thumbnail: /mask-cursor-effect.gif
 keywords:
-  - Next.js
-  - Tailwind CSS
   - Framer Motion
   - Cursor Effect
-  - UI/UX
+  - React
+  - Tailwind CSS
 ---
 
 If you’re looking to spice up your website’s interactivity and design, a mask cursor is a slick, modern feature that can really grab attention. In this blog, I’ll show you how to build a custom mask cursor using React, Framer Motion, and Tailwind CSS — from scratch.

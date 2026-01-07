@@ -12,11 +12,19 @@ import WorkExperience from "@/components/home/WorkExperience";
 
 export const metadata: Metadata = {
   title: "Radhey Mugdal - Software Engineer",
-  description: "Welcome to the portfolio of Radhey Mugdal, a Software Engineer. Explore my work experience, tech stack, projects, and latest blog posts.",
-  keywords: ["Radhey Mugdal", "Software Engineer", "Portfolio", "Web Developer", "Full Stack"],
+  description:
+    "Welcome to the portfolio of Radhey Mugdal, a Software Engineer. Explore my work experience, tech stack, projects, and latest blog posts.",
+  keywords: [
+    "Radhey Mugdal",
+    "Software Engineer",
+    "Portfolio",
+    "Web Developer",
+    "Full Stack",
+  ],
   openGraph: {
     title: "Radhey Mugdal | Software Engineer",
-    description: "Welcome to the portfolio of Radhey Mugdal, a Software Engineer. Explore my work experience, tech stack, projects, and latest blog posts.",
+    description:
+      "Welcome to the portfolio of Radhey Mugdal, a Software Engineer. Explore my work experience, tech stack, projects, and latest blog posts.",
     type: "website",
   },
 };
