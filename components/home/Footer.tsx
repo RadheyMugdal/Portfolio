@@ -1,38 +1,164 @@
 "use client"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
-import { Github, Linkedin, Twitter } from "lucide-react"
+import { Github, Linkedin, Twitter, Boxes, FileText, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
-import { useRef } from "react"
+import Link from "next/link"
+import { useRef, useState } from "react"
+
 const socials = [
-    { name: "twitter", logo: Twitter, href: "https://twitter.com/radheymugdal" },
-    { name: "github", logo: Github, href: "https://github.com/radheymugdal" },
-    { name: "linkedin", logo: Linkedin, href: "https://linkedin.com/in/radheymugdal" },
+    { name: "twitter", logo: Twitter, href: "https://twitter.com/radheymugdal", color: "hover:text-[#1DA1F2]" },
+    { name: "github", logo: Github, href: "https://github.com/radheymugdal", color: "hover:text-foreground" },
+    { name: "linkedin", logo: Linkedin, href: "https://linkedin.com/in/radheymugdal", color: "hover:text-[#0077B5]" },
+]
+
+const navLinks = [
+    { name: "Projects", href: "/projects", icon: Boxes },
+    { name: "Blogs", href: "/blogs", icon: FileText },
 ]
 
 const Footer = () => {
     const containerRef = useRef<HTMLDivElement>(null)
+    const [hoveredSocial, setHoveredSocial] = useState<string | null>(null)
+    const [hoveredLink, setHoveredLink] = useState<string | null>(null)
     useScrollFadeIn(containerRef)
+
     return (
-        <div className=' pt-32 pb-16  max-w-2xl mx-4 md:mx-auto space-y-1 ' ref={containerRef}>
-            <div className="scroll-entry">
-                <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert mx-auto " />
+        <footer className='pt-24 pb-12 max-w-2xl mx-4 md:mx-auto relative' ref={containerRef}>
+            {/* Top divider with pattern */}
+            <div className="scroll-entry mb-16">
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-border/30"></div>
+                    </div>
+                    <div className="relative flex justify-center">
+                        <div className="bg-background px-6">
+                            <div className="flex items-center gap-3">
+                                <div className="h-px w-12 bg-linear-to-r from-transparent to-foreground/20"></div>
+                                <div className="w-2 h-2 rounded-full bg-foreground/20"></div>
+                                <div className="h-px w-12 bg-linear-to-l from-transparent to-foreground/20"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p className=" text-center text-sm text-foreground/60 scroll-entry">Design and Developed by{" "}
-                <span className="font-medium text-foreground">Radhey Mugdal</span>
-            </p>
-            <p className=" text-center text-sm text-foreground/60 scroll-entry">
-                © 2025. All rights reserved.
-            </p>
-            <div className="flex gap-4 mt-8 items-center mx-auto w-fit scroll-entry">
-                {
-                    socials.map((social) => (
-                        <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
-                            <social.logo size={14} className=" text-foreground/60 hover:text-foreground" />
-                        </a>
-                    ))
-                }
+
+            {/* Main footer content grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
+                {/* Brand section */}
+                <div className="scroll-entry md:col-span-1">
+                    <Link href="/" className="inline-block mb-6 group">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-foreground/5 rounded-lg blur-md group-hover:bg-foreground/10 transition-all duration-500"></div>
+                            <Image
+                                src="/logo.png"
+                                alt="logo"
+                                width={44}
+                                height={44}
+                                className="dark:invert relative z-10 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-2"
+                            />
+                        </div>
+                    </Link>
+                    <p className="text-sm text-foreground/60 leading-relaxed">
+                        Full Stack Web Developer building modern web experiences.
+                    </p>
+                </div>
+
+                {/* Navigation section */}
+                <div className="scroll-entry md:col-span-1">
+                    <h4 className="text-sm font-semibold mb-4 text-foreground">Navigation</h4>
+                    <ul className="space-y-3">
+                        {navLinks.map((link) => {
+                            const Icon = link.icon
+                            return (
+                                <li key={link.href}>
+                                    <Link
+                                        href={link.href}
+                                        className="group flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-all duration-300"
+                                        onMouseEnter={() => setHoveredLink(link.href)}
+                                        onMouseLeave={() => setHoveredLink(null)}
+                                    >
+                                        <Icon
+                                            size={14}
+                                            className={`transition-transform duration-300 ${hoveredLink === link.href ? 'translate-x-1' : ''
+                                                }`}
+                                        />
+                                        <span>{link.name}</span>
+                                        <ArrowUpRight
+                                            size={12}
+                                            className={` transition-all duration-300 ${hoveredLink === link.href
+                                                ? 'opacity-100 translate-x-0.5 -translate-y-0.5'
+                                                : 'opacity-0 -translate-x-1 translate-y-1'
+                                                }`}
+                                        />
+                                    </Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+
+                {/* Social & Contact section */}
+                <div className="scroll-entry md:col-span-1 pl-auto ">
+                    <h4 className="text-sm font-semibold mb-4 text-foreground">Connect</h4>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex gap-4">
+                            {socials.map((social) => (
+                                <a
+                                    key={social.name}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative group"
+                                    onMouseEnter={() => setHoveredSocial(social.name)}
+                                    onMouseLeave={() => setHoveredSocial(null)}
+                                >
+                                    <div className="relative">
+                                        <div className={`absolute inset-0 rounded-lg bg-foreground/5 scale-0 group-hover:scale-110 transition-transform duration-300 ${hoveredSocial === social.name ? 'scale-110' : ''}`}></div>
+                                        <div className={`relative z-10 p-2.5 rounded-lg transition-all duration-300 ${hoveredSocial === social.name
+                                            ? 'scale-105 rotate-1'
+                                            : ''
+                                            }`}>
+                                            <social.logo
+                                                size={18}
+                                                className={`text-foreground/60 transition-all duration-300 ${social.color} ${hoveredSocial === social.name
+                                                    ? 'text-foreground'
+                                                    : ''
+                                                    }`}
+                                            />
+                                        </div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                        <Link
+                            href="/contact"
+                            className="text-sm text-foreground/60 hover:text-foreground transition-colors duration-300 inline-flex items-center gap-1.5 group"
+                        >
+                            <span>Get in touch</span>
+                            <ArrowUpRight
+                                size={12}
+                                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            />
+                        </Link>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            {/* Bottom section */}
+            <div className="scroll-entry pt-8 border-t border-border/30">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-xs text-foreground/50 text-center md:text-left">
+                        © 2026 <span className="font-medium text-foreground/70">Radhey Mugdal</span>. All rights reserved.
+                    </p>
+                    <p className="text-xs text-foreground/50 text-center md:text-right">
+                        Design & Developed with{" "}
+                        <span className="inline-flex items-center gap-1">
+                            <span className="text-red-500 animate-pulse">♥</span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </footer>
     )
 }
 
