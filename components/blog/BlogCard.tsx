@@ -39,7 +39,7 @@ const BlogCard = ({
   return (
     <Card
       key={id}
-      className="pt-3 overflow-hidden  cursor-pointer"
+      className="pt-3 overflow-hidden group  cursor-pointer"
       ref={cardRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -53,12 +53,12 @@ const BlogCard = ({
           width={1028}
           height={780}
           alt="mockup"
-          className=" w-full h-full object-cover"
+          className=" w-full  group-hover:scale-110 transition-transform duration-400 ease-in-out  h-full object-cover"
         />
       </div>
 
       <CardHeader className=" px-4 ">
-        <CardTitle className="  text-md font-semibold gap-[3px]   flex items-start   ">
+        <CardTitle className="  text-md   font-semibold gap-[3px]   flex items-start   ">
           <span className="flex-1">{name}</span>
           <Link href={`/blogs/${id}`}></Link>
           <BlogCardButton

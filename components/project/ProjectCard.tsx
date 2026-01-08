@@ -1,4 +1,4 @@
-import { Github, Globe } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Github, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "../ui/card";
@@ -35,26 +36,14 @@ const ProjectCard = ({
   thumbnailUrl,
 }: Props) => {
   return (
-    <Card key={id} className=" pt-3  overflow-hidden">
+    <Card key={id} className=" pt-3 group overflow-hidden">
       <div className=" w-[calc(100%-24px)] rounded-md overflow-hidden mx-auto h-[200px]  relative">
-        <Image src={thumbnailUrl} fill alt="mockup" className=" object-cover" />
+        <Image src={thumbnailUrl} fill alt="mockup" className=" group-hover:scale-110 transition-transform duration-400 ease-in-out object-cover" />
       </div>
-      <div className=" flex flex-col flex-1 justify-between  gap-8">
+      <div className=" flex flex-col flex-1 justify-between  gap-4">
         <CardHeader className=" px-4 space-y-1">
           <CardTitle className=" text-xl flex items-center justify-between">
             {name}
-            <div>
-              <Link target="_blank" href={webUrl}>
-                <Button variant={"ghost"} size={"icon-sm"}>
-                  <Globe />
-                </Button>
-              </Link>
-              <Link target="_blank" href={githubUrl}>
-                <Button variant={"ghost"} size={"icon-sm"}>
-                  <Github />
-                </Button>
-              </Link>
-            </div>
           </CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
@@ -66,8 +55,10 @@ const ProjectCard = ({
             <div className="flex gap-1 flex- wrap">
               {tech_stack.map((tech) => (
                 <Tooltip key={tech.name}>
-                  <TooltipTrigger>
-                    <div className=" size-8">{tech.icon}</div>
+                  <TooltipTrigger asChild>
+                    <div className="size-9 rounded-md bg-muted/50 p-1.5 flex items-center justify-center hover:bg-muted hover:scale-110 transition-all duration-200 cursor-pointer border border-border/50 hover:border-border">
+                      {tech.icon}
+                    </div>
                   </TooltipTrigger>
                   <TooltipContent side="bottom">{tech.name}</TooltipContent>
                 </Tooltip>
@@ -75,8 +66,23 @@ const ProjectCard = ({
             </div>
           </div>
         </CardContent>
+        <CardFooter className=" px-4 grid grid-cols-2 gap-2">
+          <Link href={githubUrl} target="_blank">
+            <Button variant={"secondary"} className=" w-full" >
+              <Github />
+              Github
+            </Button>
+          </Link>
+          <Link href={webUrl} target="_blank">
+            <Button className="group/button w-full"  >
+              <Globe />
+              Visit
+              <ArrowUpRight className="group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-transform duration-300" />
+            </Button>
+          </Link>
+        </CardFooter>
       </div>
-    </Card>
+    </Card >
   );
 };
 
