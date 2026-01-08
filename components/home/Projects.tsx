@@ -13,7 +13,7 @@ const Projects = () => {
     return (
         <div className=" max-w-2xl space-y-8 mx-4 md:mx-auto" ref={containerRef}>
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold scroll-entry">Projects</h3>
+                <h3 className="text-xl font-semibold scroll-entry">Projects</h3>
                 <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 scroll-entry">
                     {
                         projects.map((project) => (

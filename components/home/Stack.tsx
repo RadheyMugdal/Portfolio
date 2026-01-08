@@ -82,7 +82,7 @@ const Stack = () => {
     return (
         <div className=" max-w-2xl mx-4 md:mx-auto">
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold entry">Stack</h3>
+                <h3 className="text-xl font-semibold entry">Stack</h3>
                 <div className="flex flex-wrap gap-2 entry  ">
                     {
                         skills.map((skill) => (

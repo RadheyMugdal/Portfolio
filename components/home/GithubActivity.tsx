@@ -12,7 +12,7 @@ const GithubActivity = () => {
     return (
         <div className=" max-w-2xl mx-4 md:mx-auto" ref={containerRef}>
             <div className=" space-y-8">
-                <h3 className="text-xl font-bold scroll-entry">Github Activity</h3>
+                <h3 className="text-xl font-semibold scroll-entry">Github Activity</h3>
                 <div className='scroll-entry'>
                     <GitHubCalendar
                         username="radheymugdal"

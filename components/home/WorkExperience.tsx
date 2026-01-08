@@ -55,7 +55,7 @@ const WorkExperience = () => {
     return (
         <div className=" max-w-2xl mx-4 md:mx-auto" ref={containerRef}>
             <div className=" space-y-4">
-                <h3 className="text-xl font-bold scroll-entry">Work Experience</h3>
+                <h3 className="text-xl font-semibold scroll-entry">Work Experience</h3>
                 <Accordion type="single" className="" collapsible defaultValue="experience">
                     {
                         experiences.map((experience) => (

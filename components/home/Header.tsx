@@ -16,11 +16,7 @@ const navItems = [
     { name: "Blogs", href: "/blogs", icon: FileText },
 ];
 
-const socials = [
-    { name: "twitter", logo: FaXTwitter, href: "https://twitter.com/radheymugdal" },
-    { name: "github", logo: FaGithub, href: "https://github.com/radheymugdal" },
-    { name: "linkedin", logo: FaLinkedin, href: "https://linkedin.com/in/radheymugdal" },
-]
+
 
 const Header = () => {
     const pathname = usePathname();
@@ -64,23 +60,7 @@ const Header = () => {
                 </ul>
 
                 {/* TOGGLE ON RIGHT */}
-                <div className="flex gap-4">
-                    <div className="flex gap-4 items-center">
-                        {
-                            socials.map((social) => {
-                                const Icon = social.logo;
-                                return (
-                                    <Link target="_blank" key={social.name} href={social.href} className=" opacity-60 hover:opacity-100 transition-colors duration-300">
-                                        <Icon size={16} />
-                                    </Link>
-                                )
-                            })
-                        }
-
-                    </div>
-                    <Separator orientation="vertical" className="  h-full" />
-                    <ThemeToggleButton variant="polygon" />
-                </div>
+                <ThemeToggleButton variant="polygon" />
             </div>
 
             {/* MOBILE DROPDOWN */}
