@@ -4,11 +4,14 @@ import { Github, Linkedin, Twitter, Boxes, FileText, ArrowUpRight } from "lucide
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState } from "react"
+import { FaXTwitter } from "react-icons/fa6";
+
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const socials = [
-    { name: "twitter", logo: Twitter, href: "https://twitter.com/radheymugdal", color: "hover:text-[#1DA1F2]" },
-    { name: "github", logo: Github, href: "https://github.com/radheymugdal", color: "hover:text-foreground" },
-    { name: "linkedin", logo: Linkedin, href: "https://linkedin.com/in/radheymugdal", color: "hover:text-[#0077B5]" },
+    { name: "twitter", logo: FaXTwitter, href: "https://twitter.com/radheymugdal", color: "hover:text-[#1DA1F2]" },
+    { name: "github", logo: FaGithub, href: "https://github.com/radheymugdal", color: "hover:text-foreground" },
+    { name: "linkedin", logo: FaLinkedin, href: "https://linkedin.com/in/radheymugdal", color: "hover:text-[#0077B5]" },
 ]
 
 const navLinks = [
@@ -76,6 +79,7 @@ const Footer = () => {
                                         className="group flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-all duration-300"
                                         onMouseEnter={() => setHoveredLink(link.href)}
                                         onMouseLeave={() => setHoveredLink(null)}
+                                        target="_blank"
                                     >
                                         <Icon
                                             size={14}

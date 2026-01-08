@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Boxes, FileText, Menu, X, Twitter, Github, Linkedin } from "lucide-react";
+import { Boxes, FileText, Menu, X, Github, Linkedin } from "lucide-react";
 import { ThemeToggleButton } from "../ui/mode-toggle";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import Image from "next/image";
+import { FaXTwitter } from "react-icons/fa6";
+
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const navItems = [
     { name: "Projects", href: "/projects", icon: Boxes },
@@ -14,9 +17,9 @@ const navItems = [
 ];
 
 const socials = [
-    { name: "twitter", logo: Twitter, href: "https://twitter.com/radheymugdal" },
-    { name: "github", logo: Github, href: "https://github.com/radheymugdal" },
-    { name: "linkedin", logo: Linkedin, href: "https://linkedin.com/in/radheymugdal" },
+    { name: "twitter", logo: FaXTwitter, href: "https://twitter.com/radheymugdal" },
+    { name: "github", logo: FaGithub, href: "https://github.com/radheymugdal" },
+    { name: "linkedin", logo: FaLinkedin, href: "https://linkedin.com/in/radheymugdal" },
 ]
 
 const Header = () => {
@@ -67,9 +70,9 @@ const Header = () => {
                             socials.map((social) => {
                                 const Icon = social.logo;
                                 return (
-                                    <a key={social.name} href={social.href} className=" opacity-60 hover:opacity-100 transition-colors duration-300">
+                                    <Link target="_blank" key={social.name} href={social.href} className=" opacity-60 hover:opacity-100 transition-colors duration-300">
                                         <Icon size={16} />
-                                    </a>
+                                    </Link>
                                 )
                             })
                         }
