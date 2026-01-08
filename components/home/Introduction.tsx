@@ -34,36 +34,34 @@ const Introduction = () => {
     })
   })
   return (
-    <div className=" max-w-2xl mx-4 md:mx-auto   space-y-8 ">
-      <div className=" space-y-6">
-        <div className=" w-full h-44 mt-20  rounded-lg overflow-hidden">
-          <img src={"https://images.unsplash.com/photo-1706562017878-8d4a5d2f0e19?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className=" object-cover  w-full h-full" alt="img" />
+    <div className="max-w-2xl  mx-4 sm:mx-6 md:mx-auto space-y-6 sm:space-y-8">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="w-full h-32 sm:h-40 md:h-44 mt-12 sm:mt-16 md:mt-20 rounded-md overflow-hidden">
+          <img src={"https://images.unsplash.com/photo-1706562017878-8d4a5d2f0e19?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className="object-cover w-full h-full" alt="img" />
         </div>
-        <div className="  flex items-start  justify-between">
-          <div className="flex flex-col gap-1" >
-            <h1 className=" text- 2xl md:text-4xl font-semibold entry">Radhey Mugdal</h1>
-            <p className=" text-sm   md:text-base text-foreground/60 entry">Full Stack Web Developer</p>
-
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-0">
+          <div className="flex flex-col gap-1">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold entry">Radhey Mugdal</h1>
+            <p className="text-sm sm:text-base text-foreground/60 entry">Full Stack Web Developer</p>
           </div>
-          <div className="flex gap-4 entry  items-center">
+          <div className="flex gap-3 sm:gap-4 entry items-center">
             {
               socials.map((social) => {
                 const Icon = social.logo;
                 return (
-                  <Link target="_blank" key={social.name} href={social.href} className=" opacity-75 hover:opacity-100 transition-colors duration-300">
-                    <Icon size={16} />
+                  <Link target="_blank" key={social.name} href={social.href} className="opacity-75 hover:opacity-100 transition-colors duration-300">
+                    <Icon size={16} className="sm:w-4 sm:h-4" />
                   </Link>
                 )
               })
             }
-
           </div>
         </div>
       </div>
       {/*about*/}
 
-      <div className="space-y-4" >
-        <div className="space-y-5 text-sm md:text-base">
+      <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-4 sm:space-y-5 text-sm sm:text-base">
           <p className="text-foreground/60 entry">
             tldr; learning by building, breaking, and shipping things.
           </p>
@@ -74,17 +72,16 @@ const Introduction = () => {
             curiosity fuels everything I build.
           </p>
         </div>
-
       </div>
-      <div className="flex gap-4 entry">
-        <Link href={"/resume"} >
-
-          <Button>
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 entry">
+        <Link href={"/resume"} className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto">
             <CgFileDocument />
-            Resume/CV</Button>
+            Resume/CV
+          </Button>
         </Link>
-        <Link href={"/contact"}>
-          <Button variant={"outline"}>
+        <Link href={"/contact"} className="w-full sm:w-auto">
+          <Button variant={"outline"} className="w-full sm:w-auto">
             <Send />
             Get in touch
           </Button>

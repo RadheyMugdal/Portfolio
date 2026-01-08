@@ -35,7 +35,7 @@ export default async function HomePage() {
     .slice(0, 2);
 
   return (
-    <div className="relative space-y-12">
+    <div className="relative space-y-12 max-w-3xl  mx-auto ">
       <Introduction />
       <Stack />
       <WorkExperience />
