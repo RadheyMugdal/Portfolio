@@ -1,13 +1,10 @@
-"use client"
-import Image from "next/image";
+"use client";
 import { Button } from "../ui/button";
-import { ArrowUpRight, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import Link from "next/link";
 import { CgFileDocument } from "react-icons/cg";
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap"
-import { Separator } from "../ui/separator";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 const socials = [
   { name: "twitter", logo: FaXTwitter, href: "https://twitter.com/radheymugdal" },

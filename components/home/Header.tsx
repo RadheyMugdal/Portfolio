@@ -23,7 +23,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="fixed  max-w-3xl mx-auto top-0 px-8 left-0 right-0 z-50 backdrop-blur-xl bg-background/20   ">
+        <div className="fixed  max-w-3xl mx-auto top-0  md:px-8 left-0 right-0 z-50 bg-background   ">
             <div className=" h-16 px-4 flex items-center justify-between">
 
                 {/* MOBILE MENU BUTTON */}
@@ -35,32 +35,35 @@ const Header = () => {
                 </button>
 
                 {/* DESKTOP NAV */}
-                <ul className="hidden md:flex items-center gap-6">
-                    <Link href="/">
-                        <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert" />
-                    </Link>
-                    {navItems.map((item) => {
-                        const Icon = item.icon;
-                        const active = pathname === item.href;
+                <Link href="/">
+                    <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert" />
+                </Link>
 
-                        return (
-                            <li key={item.href} className="relative group">
-                                <a
-                                    href={item.href}
-                                    className={`flex items-center gap-1.5 text-sm  transition-opacity
+                <div className="flex items-center gap-6">
+                    <ul className="hidden md:flex items-center gap-4">
+
+                        {navItems.map((item) => {
+                            const Icon = item.icon;
+                            const active = pathname === item.href;
+
+                            return (
+                                <li key={item.href} className="relative group">
+                                    <a
+                                        href={item.href}
+                                        className={`flex items-center gap-1.5 text-sm  transition-opacity
                     ${active ? "opacity-100" : "opacity-70 group-hover:opacity-100"}
                   `}
-                                >
-                                    {item.name}
-                                </a>
+                                    >
+                                        {item.name}
+                                    </a>
 
-                            </li>
-                        );
-                    })}
-                </ul>
-
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <ThemeToggleButton variant="polygon" />
+                </div>
                 {/* TOGGLE ON RIGHT */}
-                <ThemeToggleButton variant="polygon" />
             </div>
 
             {/* MOBILE DROPDOWN */}

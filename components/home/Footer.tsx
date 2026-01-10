@@ -26,7 +26,7 @@ const Footer = () => {
     useScrollFadeIn(containerRef)
 
     return (
-        <footer className='pt-24 pb-12 max-w-2xl mx-4 md:mx-auto relative' ref={containerRef}>
+        <footer className='pt-24 pb-12 max-w-2xl  px-4  mx-4 sm:mx-auto relative' ref={containerRef}>
             {/* Top divider with pattern */}
             <div className="scroll-entry mb-16">
                 <div className="relative">
@@ -106,33 +106,17 @@ const Footer = () => {
                     <h4 className="text-sm font-semibold mb-4 text-foreground">Connect</h4>
                     <div className="flex flex-col gap-4">
                         <div className="flex gap-4">
-                            {socials.map((social) => (
-                                <a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="relative group"
-                                    onMouseEnter={() => setHoveredSocial(social.name)}
-                                    onMouseLeave={() => setHoveredSocial(null)}
-                                >
-                                    <div className="relative">
-                                        <div className={`absolute inset-0 rounded-lg bg-foreground/5 scale-0 group-hover:scale-110 transition-transform duration-300 ${hoveredSocial === social.name ? 'scale-110' : ''}`}></div>
-                                        <div className={`relative z-10 p-2.5 rounded-lg transition-all duration-300 ${hoveredSocial === social.name
-                                            ? 'scale-105 rotate-1'
-                                            : ''
-                                            }`}>
-                                            <social.logo
-                                                size={18}
-                                                className={`text-foreground/60 transition-all duration-300 ${social.color} ${hoveredSocial === social.name
-                                                    ? 'text-foreground'
-                                                    : ''
-                                                    }`}
-                                            />
-                                        </div>
-                                    </div>
-                                </a>
-                            ))}
+                            {
+
+                                socials.map((social) => {
+                                    const Icon = social.logo;
+                                    return (
+                                        <Link target="_blank" key={social.name} href={social.href} className="opacity-75 hover:opacity-100 transition-colors duration-300">
+                                            <Icon size={16} className="sm:w-4 sm:h-4" />
+                                        </Link>
+                                    )
+                                })
+                            }
                         </div>
                         <Link
                             href="/contact"
