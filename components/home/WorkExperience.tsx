@@ -1,12 +1,12 @@
 "use client";
-import { Twitter } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
 const experiences = [{
-    company: "PractiSkill Pvt. Ltd.",
+    company: "Practiskills Pvt. Ltd.",
     role: "Full Stack Developer",
     duration: "August 2024 - Present",
+    logo:"/experience/practiskills_logo.jpg",
     location: "Bangalore (Remote)",
     technologies: ["Next.js", "React.js", "TypeScript", "Javascript", "Postgresql", "Tailwind CSS", "Bun", "Figma", "AWS"],
     points: [
@@ -18,7 +18,7 @@ const experiences = [{
             text: "Built scalable and complex backend systems including RESTful APIs authentication authorization and performance optimized data handling",
             highlights: ["RESTful APIs", "authentication", "authorization"]
         },
-        {
+        {   
             text: "Designed and implemented multiple custom CMS platforms with dynamic content management role based access control and modular architecture",
             highlights: ["custom CMS platforms", "role-based access control"]
         },
@@ -62,12 +62,12 @@ const WorkExperience = () => {
                             <AccordionItem key={experience.company} value="experience" className="scroll-entry" >
                                 <AccordionTrigger className=" w-full hover:no-underline" >
                                     <div className="flex  w-full gap-4">
-                                        <div className="  md:size-18  size-12  items-center justify-center flex  rounded-sm bg-input">
-                                            <Twitter />
+                                        <div className="  md:size-18  size-12  rounded-lg overflow-hidden ">
+                                          <img src={experience.logo} alt="" className=" w-full h-full object-cover" />
                                         </div>
                                         <div className=" flex-1 flex  items-center justify-between">
                                             <div className=" h-full flex flex-col gap-1  justify-center">
-                                                <h4 className="font-semibold ">{experience.company}</h4>
+                                                <h4 className="font-semibold text-base ">{experience.company}</h4>
                                                 <span className="text-xs opacity-60">{experience.role}</span>
 
                                             </div>
