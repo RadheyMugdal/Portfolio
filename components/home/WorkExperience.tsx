@@ -11,25 +11,18 @@ const experiences = [{
     technologies: ["Next.js", "React.js", "TypeScript", "Javascript", "Postgresql", "Tailwind CSS", "Bun", "Figma", "AWS"],
     points: [
         {
-            text: "Developed and delivered end-to-end full-stack web applications handling frontend backend database design and system architecture from scratch",
-            highlights: ["end-to-end full-stack web applications"]
+            text: " Delivered end-to-end dashboards, CRM capabilities, and landing experiences that improved operational visibility and enabled internal teams to execute workflows more efficiently",
+            highlights: []
         },
         {
-            text: "Built scalable and complex backend systems including RESTful APIs authentication authorization and performance optimized data handling",
-            highlights: ["RESTful APIs", "authentication", "authorization"]
+            text: " Refined onboarding, activation, and checkout journeys, increasing engagement and conversions by 10% while strengthening authentication and payment integrations. ",
+            highlights: []
         },
         {   
-            text: "Designed and implemented multiple custom CMS platforms with dynamic content management role based access control and modular architecture",
-            highlights: ["custom CMS platforms", "role-based access control"]
+            text: "Drove production excellence by diagnosing issues, shipping timely fixes, and supporting releases, reducing bug reports by 25% and maintaining reliable performance.",
+            highlights: []
         },
-        {
-            text: "Created a custom drag and drop builder in React from scratch enabling dynamic UI creation and reusable component management",
-            highlights: ["drag and drop builder", "React"]
-        },
-        {
-            text: "Managed application deployment and CI/CD pipelines automating build testing and release workflows",
-            highlights: ["CI/CD pipelines", "deployment"]
-        }
+        
     ]
 }]
 
