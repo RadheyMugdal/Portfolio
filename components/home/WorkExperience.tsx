@@ -2,27 +2,32 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
+import { text } from "stream/consumers";
 const experiences = [{
     company: "Practiskills Pvt. Ltd.",
     role: "Full Stack Developer",
     duration: "August 2024 - Present",
-    logo:"/experience/practiskills_logo.jpg",
+    logo: "/experience/practiskills_logo.jpg",
     location: "Bangalore (Remote)",
     technologies: ["Next.js", "React.js", "TypeScript", "Javascript", "Postgresql", "Tailwind CSS", "Bun", "Figma", "AWS"],
     points: [
         {
-            text: " Delivered end-to-end dashboards, CRM capabilities, and landing experiences that improved operational visibility and enabled internal teams to execute workflows more efficiently",
-            highlights: []
+            text: " Owned the design and deployment of scalable backend APIs, integrating AI features that enhanced system efficiency and enriched product capabilities",
+            highlights: ["Owned", "design", "deployment", "scalable backend APIs", "AI features", "system efficiency", "product capabilities"]
         },
         {
-            text: " Refined onboarding, activation, and checkout journeys, increasing engagement and conversions by 10% while strengthening authentication and payment integrations. ",
-            highlights: []
+            text: "  Developed responsive dashboards, landing pages, and reusable frontend components, accelerating feature delivery by 30% and improving user experience. ",
+            highlights: ["Developed", "responsive dashboards", "landing pages", "reusable frontend components", "feature delivery", "user experience"]
         },
-        {   
-            text: "Drove production excellence by diagnosing issues, shipping timely fixes, and supporting releases, reducing bug reports by 25% and maintaining reliable performance.",
-            highlights: []
+        {
+            text: " Implemented authentication flows, streamlined onboarding, and executed payment integrations, boosting user activation and retention by 15%.",
+            highlights: ["Implemented", "authentication flows", "onboarding", "payment integrations", "user activation", "retention"]
         },
-        
+        {
+            text: "Diagnosed and resolved bugs while shipping new features, reducing production issues by 25% and ensuring platform reliability. ",
+            highlights: ["Diagnosed", "resolved bugs", "shipping new features", "production issues", "platform reliability"]
+        }
+
     ]
 }]
 
@@ -56,7 +61,7 @@ const WorkExperience = () => {
                                 <AccordionTrigger className=" w-full hover:no-underline" >
                                     <div className="flex  w-full gap-4">
                                         <div className="  md:size-18  size-12  rounded-lg overflow-hidden ">
-                                          <img src={experience.logo} alt="" className=" w-full h-full object-cover" />
+                                            <img src={experience.logo} alt="" className=" w-full h-full object-cover" />
                                         </div>
                                         <div className=" flex-1 flex  items-center justify-between">
                                             <div className=" h-full flex flex-col gap-1  justify-center">
