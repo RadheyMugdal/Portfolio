@@ -6,6 +6,7 @@ import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import SmoothScrolling from "@/components/global/SmoothScrolling";
+import { Analytics } from "@vercel/analytics/next"
 
 
 
@@ -73,6 +74,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head />
         <body className={` relative ${inter.variable} ${inter.className}`}>
+          <Analytics/>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
