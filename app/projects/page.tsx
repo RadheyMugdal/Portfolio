@@ -11,7 +11,7 @@ const ProjectsPage = () => {
         const metaDescription = document.querySelector('meta[name="description"]')
         if (metaDescription) {
             metaDescription.setAttribute('content', 'Explore the portfolio projects of Radhey Mugdal. Browse through web applications, tools, and innovative software solutions built with modern technologies.')
-        }
+        }   
     }, [])
     const containerRef = useRef<HTMLDivElement>(null)
     useScrollFadeIn(containerRef)
