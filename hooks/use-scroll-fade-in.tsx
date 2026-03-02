@@ -10,19 +10,31 @@ export const useScrollFadeIn = (containerRef: React.RefObject<HTMLElement | null
 
         const elements = containerRef.current.querySelectorAll(".scroll-entry");
 
-        gsap.fromTo(elements, {
-            y: 30,
-            opacity: 0,
-            filter: 'blur(5px)'
-        }, {
-            y: 0,
-            opacity: 1,
-            filter: 'blur(0px)',
-            stagger: 0.3,
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top 90%",
-            },
-        });
+        const ctx = gsap.context(() => {
+            gsap.fromTo(elements, {
+                y: 30,
+                opacity: 0,
+                filter: 'blur(5px)'
+            }, {
+                y: 0,
+                opacity: 1,
+                filter: 'blur(0px)',
+                stagger: 0.3,
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top 90%",
+                    once: true,
+                },
+            });
+        }, containerRef);
+
+        return () => {
+            ctx.revert();
+            ScrollTrigger.getAll().forEach(trigger => {
+                if (trigger.trigger === containerRef.current) {
+                    trigger.kill();
+                }
+            });
+        };
     }, [containerRef]);
 };

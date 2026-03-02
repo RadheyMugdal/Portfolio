@@ -1,5 +1,8 @@
 "use client";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 
 const skills = [
     {
@@ -86,9 +89,34 @@ const skills = [
 ]
 
 const Stack = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        if (!containerRef.current) return;
+
+        const entries = containerRef.current.querySelectorAll('.entry');
+
+        // Immediately set initial hidden state to prevent flash
+        gsap.set(entries, {
+            y: 20,
+            filter: 'blur(8px)',
+            opacity: 0,
+        });
+
+        // Then animate to final state with delay to wait for Introduction
+        gsap.to(entries, {
+            y: 0,
+            filter: 'blur(0px)',
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.1,
+            delay: 0.8, // Wait for Introduction animation to complete (~9 elements * 0.1s stagger + 0.5s duration)
+            ease: "power2.out",
+        });
+    }, { scope: containerRef });
 
     return (
-        <div className=" max-w-2xl mx-4 md:mx-auto">
+        <div ref={containerRef} className=" max-w-2xl mx-4 md:mx-auto">
             <div className=" space-y-4">
                 <h3 className="text-xl font-semibold entry">Stack</h3>
                 <div className="flex flex-wrap gap-2 entry  ">

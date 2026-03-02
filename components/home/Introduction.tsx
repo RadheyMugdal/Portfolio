@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CgFileDocument } from "react-icons/cg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap"
+import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 const socials = [
   { name: "twitter", logo: FaXTwitter, href: "https://twitter.com/radheymugdal" },
@@ -12,26 +13,33 @@ const socials = [
   { name: "linkedin", logo: FaLinkedin, href: "https://linkedin.com/in/radheymugdal" },
 ]
 const Introduction = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useGSAP(() => {
+    if (!containerRef.current) return;
+
+    const entries = containerRef.current.querySelectorAll('.entry');
+
     // Immediately set initial hidden state to prevent flash
-    gsap.set('.entry', {
+    gsap.set(entries, {
       y: 40,
       filter: 'blur(10px)',
       opacity: 0,
-    })
+    });
 
     // Then animate to final state
-    gsap.to('.entry', {
+    gsap.to(entries, {
       y: 0,
       filter: 'blur(0px)',
       opacity: 1,
       duration: 0.5,
       stagger: 0.1,
+      ease: "power2.out",
+    });
+  }, { scope: containerRef });
 
-    })
-  })
   return (
-    <div className="max-w-2xl  mx-4 sm:mx-6 md:mx-auto space-y-6 sm:space-y-8">
+    <div ref={containerRef} className="max-w-2xl  mx-4 sm:mx-6 md:mx-auto space-y-6 sm:space-y-8">
       <div className="space-y-4 sm:space-y-6">
         <div className="w-full h-32 sm:h-40 md:h-44 mt-12 sm:mt-16 md:mt-20 rounded-md overflow-hidden">
           <img src={"https://images.unsplash.com/photo-1706562017878-8d4a5d2f0e19?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className="object-cover w-full h-full" alt="img" />

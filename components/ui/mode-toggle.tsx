@@ -1,7 +1,7 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -40,9 +40,18 @@ export const ThemeToggleButton = ({
 }: ThemeToggleButtonProps) => {
   const { theme: currentTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const styleCleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     setMounted(true);
+
+    // Cleanup any leftover styles on unmount
+    return () => {
+      if (styleCleanupRef.current) {
+        styleCleanupRef.current();
+        styleCleanupRef.current = null;
+      }
+    };
   }, []);
 
   // Use prop theme if provided, otherwise use current theme from next-themes
@@ -50,6 +59,12 @@ export const ThemeToggleButton = ({
   const theme = mounted ? (themeProp || currentTheme) : (themeProp || 'dark');
 
   const handleClick = useCallback(() => {
+    // Clean up previous styles before creating new ones
+    if (styleCleanupRef.current) {
+      styleCleanupRef.current();
+      styleCleanupRef.current = null;
+    }
+
     // Inject animation styles for this specific transition
     const styleId = `theme-transition-${Date.now()}`;
     const style = document.createElement('style');
@@ -70,7 +85,7 @@ export const ThemeToggleButton = ({
       const cy = start === 'center' ? '50' : start.includes('top') ? '0' : '100';
       css = `
         @supports (view-transition-name: root) {
-          ::view-transition-old(root) { 
+          ::view-transition-old(root) {
             animation: none;
           }
           ::view-transition-new(root) {
@@ -92,7 +107,7 @@ export const ThemeToggleButton = ({
       const cy = start === 'center' ? '50' : start.includes('top') ? '0' : '100';
       css = `
         @supports (view-transition-name: root) {
-          ::view-transition-old(root) { 
+          ::view-transition-old(root) {
             animation: none;
           }
           ::view-transition-new(root) {
@@ -179,29 +194,48 @@ export const ThemeToggleButton = ({
       style.textContent = css;
       document.head.appendChild(style);
 
-      // Clean up animation styles after transition
-      setTimeout(() => {
+      // Create cleanup function for this style element
+      const cleanup = () => {
         const styleEl = document.getElementById(styleId);
         if (styleEl) {
           styleEl.remove();
         }
-      }, 3000);
+      };
+
+      styleCleanupRef.current = cleanup;
+
+      // Clean up animation styles after transition completes
+      // Use the longer animation duration (2.5s for gif) + buffer
+      const cleanupDelay = variant === 'gif' ? 3000 : 600;
+      const timeoutId = setTimeout(() => {
+        cleanup();
+        if (styleCleanupRef.current === cleanup) {
+          styleCleanupRef.current = null;
+        }
+      }, cleanupDelay);
+
+      // Also clear timeout on cleanup
+      const originalCleanup = cleanup;
+      styleCleanupRef.current = () => {
+        clearTimeout(timeoutId);
+        originalCleanup();
+      };
     }
 
     // Toggle theme with View Transitions API
-    const toggleTheme = () => {
-      const newTheme = theme === 'light' ? 'dark' : 'light';
-      setTheme(newTheme);
-      onClick?.();
-    };
+    const newTheme = theme === 'light' ? 'dark' : 'light';
 
     // Use View Transitions API if available
     if ('startViewTransition' in document) {
-      (document as any).startViewTransition(toggleTheme);
+      (document as any).startViewTransition(() => {
+        setTheme(newTheme);
+        onClick?.();
+      });
     } else {
-      toggleTheme();
+      setTheme(newTheme);
+      onClick?.();
     }
-  }, [onClick, variant, start, url, theme, setTheme]);
+  }, [theme, variant, start, url, onClick]);
 
   return (
     <Button
