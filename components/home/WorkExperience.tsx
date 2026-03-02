@@ -2,14 +2,13 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import { useRef } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
-import { text } from "stream/consumers";
 const experiences = [{
     company: "Practiskills Pvt. Ltd.",
     role: "Full Stack Developer",
     duration: "August 2024 - Present",
     logo: "/experience/practiskills_logo.jpg",
-    location: "Bangalore (Remote)",
-    technologies: ["Next.js", "React.js", "TypeScript", "Javascript", "Postgresql", "Tailwind CSS", "Bun", "Figma", "AWS"],
+    location: "Bengaluru (Remote)",
+    technologies: ["Next.js", "React.js", "Node.js", "TypeScript", "Javascript", "MongoDB", "Postgresql","Docker","CI/CD", "RabbitMQ", "AWS"],
     points: [
         {
             text: " Owned the design and deployment of scalable backend APIs, integrating AI features that enhanced system efficiency and enriched product capabilities",
