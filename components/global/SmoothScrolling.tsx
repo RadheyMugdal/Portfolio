@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "@studio-freight/lenis";
 
 function SmoothScrolling({ children }: { children: any }) {
     const lenisRef = useRef<Lenis | null>(null);
     const rafIdRef = useRef<number | null>(null);
+    const pathname = usePathname();
 
     useEffect(() => {
         const lenis = new Lenis({
@@ -32,6 +34,18 @@ function SmoothScrolling({ children }: { children: any }) {
             }
         };
     }, []);
+
+    // Scroll to top when pathname changes
+    useEffect(() => {
+        if (lenisRef.current) {
+            lenisRef.current.scrollTo(0, {
+                immediate: true,
+                force: true,
+            });
+        }
+        // Fallback to native scroll if Lenis is not available
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     return <>{children}</>;
 }

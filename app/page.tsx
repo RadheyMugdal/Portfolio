@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const blogs = await allBlogs
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 2);
 
   return (

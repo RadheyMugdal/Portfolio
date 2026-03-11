@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const BlogPage = async () => {
 
-    const blogs = await allBlogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const blogs = await allBlogs.sort((a, b) => b.date.getTime() - a.date.getTime())
     return (
         <div className=' mx-8 md:mx-auto max-w-2xl pt-28 '>
             <Blogs blogs={blogs} />

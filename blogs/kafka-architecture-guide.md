@@ -1,6 +1,6 @@
 ---
 title: Understanding Apache Kafka Architecture.
-date: 2025-03-08
+date: 2026-03-08
 description: A comprehensive guide to understanding Apache Kafka's architecture and internal workings. Learn about producers, consumers, topics, partitions, and how Kafka handles massive data streams in real-time.
 thumbnail: /blogs/kafka-architecture/kafka-architecture-guide.jpg
 keywords:
