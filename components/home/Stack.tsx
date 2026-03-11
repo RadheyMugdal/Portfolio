@@ -14,14 +14,16 @@ const containerVariants = {
 
 const entryVariants = {
     hidden: {
-        y: 20,
+        y: 30,
         opacity: 0,
+        filter:'blur(10px)'
     },
     visible: {
         y: 0,
         opacity: 1,
+        filter:'blur(0px)',
         transition: {
-            duration: 0.35,
+            duration: 0.6,
             ease: [0.25, 0.1, 0.25, 1] as const,
         },
     },

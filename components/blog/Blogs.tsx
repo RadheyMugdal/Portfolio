@@ -16,10 +16,11 @@ import { useRouter } from 'next/navigation'
 const BLOGS_PER_PAGE = 6
 
 const fadeUpVariant = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0,filter:'blur(10px)' },
     visible: {
         y: 0,
         opacity: 1,
+        filter:'blur(0px)',
         transition: {
             duration: 0.4,
             ease: [0.25, 0.1, 0.25, 1] as const,
