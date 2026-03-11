@@ -1,11 +1,23 @@
 "use client";
-import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
 import dynamic from 'next/dynamic'
-import { useRef, useEffect } from 'react'
+import { useEffect } from 'react'
+import { motion } from "motion/react"
 
 const ResumeClient = dynamic(() => import('./ResumeClient'), {
     ssr: false,
 })
+
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+}
 
 export default function ResumePage() {
     useEffect(() => {
@@ -15,15 +27,29 @@ export default function ResumePage() {
             metaDescription.setAttribute('content', 'View the resume of Radhey Mugdal, Software Engineer. Explore work experience, skills, education, and professional background.')
         }
     }, [])
-    const containerRef = useRef<HTMLDivElement>(null)
-    useScrollFadeIn(containerRef)
-    return (
-        <div className=' mx-auto max-w-2xl pt-28 space-y-12 ' ref={containerRef}>
-            <h1 className='text-center text-5xl font-semibold scroll-entry scroll-entry'>Resume</h1>
-            <div className=' bg-muted rounded-md relative min-h-[70vh] scroll-entry'>
 
+    return (
+        <motion.div
+            className='mx-auto max-w-2xl pt-28 space-y-12'
+        >
+            <motion.h1
+                className='text-center text-5xl font-semibold'
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
+                Resume
+            </motion.h1>
+            <motion.div
+                className='bg-muted rounded-md relative min-h-[70vh]'
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
                 <ResumeClient />
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     )
 }

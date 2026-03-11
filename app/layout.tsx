@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import SmoothScrolling from "@/components/global/SmoothScrolling";
 import { Analytics } from "@vercel/analytics/next"
 import { cn } from "@/lib/utils";
 
@@ -84,10 +83,8 @@ export default function RootLayout({
           >
             <Header />
 
-            <SmoothScrolling>
-              {children}
-              <Footer />
-            </SmoothScrolling>
+            {children}
+            <Footer />
             <Toaster />
           </ThemeProvider>
         </body>

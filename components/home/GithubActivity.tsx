@@ -2,18 +2,35 @@
 
 import { GitHubCalendar } from 'react-github-calendar';
 import { useTheme } from 'next-themes';
-import { useRef } from 'react';
-import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in';
+import { motion } from "motion/react";
+
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+}
 
 const GithubActivity = () => {
     const { theme } = useTheme();
-    const containerRef = useRef<HTMLDivElement>(null)
-    useScrollFadeIn(containerRef)
     return (
-        <div className=" max-w-2xl mx-4 md:mx-auto" ref={containerRef}>
-            <div className=" space-y-8">
-                <h3 className="text-xl font-semibold scroll-entry">Github Activity</h3>
-                <div className='scroll-entry'>
+        <motion.div
+            className="max-w-2xl mx-4 md:mx-auto"
+            variants={fadeUpVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+        >
+            <div className="space-y-8">
+                <h3 className="text-xl font-semibold">
+                    Github Activity
+                </h3>
+                <div>
                     <GitHubCalendar
                         username="radheymugdal"
                         blockSize={8.7}
@@ -21,7 +38,7 @@ const GithubActivity = () => {
                     />
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

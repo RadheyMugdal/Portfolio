@@ -4,13 +4,10 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { IconBoxMultiple, IconFileText, IconMenu2, IconX, IconSearch } from "@tabler/icons-react";
 import { ThemeToggleButton } from "../ui/mode-toggle";
-import { Separator } from "../ui/separator";
 import Link from "next/link";
 import Image from "next/image";
-import { FaXTwitter } from "react-icons/fa6";
 import { CommandPalette } from "../global/CommandPalette";
 
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const navItems = [
     { name: "Projects", href: "/projects", icon: IconBoxMultiple },

@@ -1,8 +1,31 @@
 "use client";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { useRef } from "react";
+import { motion } from "motion/react";
+
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.05,
+            delayChildren: 0.2,
+        },
+    },
+};
+
+const entryVariants = {
+    hidden: {
+        y: 20,
+        opacity: 0,
+    },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.35,
+            ease: [0.25, 0.1, 0.25, 1],
+        },
+    },
+};
 
 const skills = [
     {
@@ -89,42 +112,29 @@ const skills = [
 ]
 
 const Stack = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    useGSAP(() => {
-        if (!containerRef.current) return;
-
-        const entries = containerRef.current.querySelectorAll('.entry');
-
-        // Immediately set initial hidden state to prevent flash
-        gsap.set(entries, {
-            y: 20,
-            filter: 'blur(8px)',
-            opacity: 0,
-        });
-
-        // Then animate to final state with delay to wait for Introduction
-        gsap.to(entries, {
-            y: 0,
-            filter: 'blur(0px)',
-            opacity: 1,
-            duration: 0.5,
-            stagger: 0.1,
-            delay: 0.8, // Wait for Introduction animation to complete (~9 elements * 0.1s stagger + 0.5s duration)
-            ease: "power2.out",
-        });
-    }, { scope: containerRef });
-
     return (
-        <div ref={containerRef} className=" max-w-2xl mx-4 md:mx-auto">
-            <div className=" space-y-4">
-                <h3 className="text-xl font-semibold entry">Stack</h3>
-                <div className="flex flex-wrap gap-2 entry  ">
+        <motion.div
+            className="max-w-2xl mx-4 md:mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+            <div className="space-y-4">
+                <motion.h3
+                    className="text-xl font-semibold"
+                    variants={entryVariants}
+                >
+                    Stack
+                </motion.h3>
+                <motion.div
+                    className="flex flex-wrap gap-2"
+                    variants={entryVariants}
+                >
                     {
                         skills.map((skill) => (
                             <Tooltip key={skill.name} >
                                 <TooltipTrigger className="">
-                                    <div key={skill.name} className=" hover:bg-card rounded-sm flex items-center justify-center  size-12 ">
+                                    <div key={skill.name} className="hover:bg-card rounded-sm flex items-center justify-center size-12">
                                         {skill.icon}
                                     </div>
                                 </TooltipTrigger>
@@ -134,10 +144,10 @@ const Stack = () => {
                             </Tooltip>
                         ))
                     }
-                </div>
+                </motion.div>
 
             </div>
-        </div >
+        </motion.div>
     )
 }
 

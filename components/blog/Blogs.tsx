@@ -1,8 +1,8 @@
 "use client"
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import BlogCard from './BlogCard'
 import type { Blog } from 'content-collections'
-import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
+import { motion } from "motion/react"
 import {
     Pagination,
     PaginationContent,
@@ -15,11 +15,21 @@ import { useRouter } from 'next/navigation'
 
 const BLOGS_PER_PAGE = 6
 
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+}
+
 const Blogs = ({ blogs, currentPage }: { blogs: Blog[], currentPage: number }) => {
   const [page, setPage] = useState(currentPage)
   const router = useRouter()
-  const containerRef = useRef<HTMLDivElement>(null)
-  useScrollFadeIn(containerRef)
 
   const totalPages = Math.ceil(blogs.length / BLOGS_PER_PAGE)
   const startIndex = (page - 1) * BLOGS_PER_PAGE
@@ -37,7 +47,6 @@ const Blogs = ({ blogs, currentPage }: { blogs: Blog[], currentPage: number }) =
     } else {
       router.push(`/blogs?page=${newPage}`)
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const renderPaginationItems = () => {
@@ -65,9 +74,25 @@ const Blogs = ({ blogs, currentPage }: { blogs: Blog[], currentPage: number }) =
   }
 
   return (
-    <div className='space-y-12' ref={containerRef}>
-      <h1 className='text-center text-3xl md:text-5xl font-semibold scroll-entry'>Blogs</h1>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 scroll-entry'>
+    <motion.div
+      className='space-y-12'
+    >
+      <motion.h1
+        className='text-center text-3xl md:text-5xl font-semibold'
+        variants={fadeUpVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        Blogs
+      </motion.h1>
+      <motion.div
+        className='grid grid-cols-1 md:grid-cols-2 gap-8'
+        variants={fadeUpVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
         {
           currentBlogs.map((blog) => (
             <BlogCard key={blog._meta.path}
@@ -80,9 +105,15 @@ const Blogs = ({ blogs, currentPage }: { blogs: Blog[], currentPage: number }) =
             />
           ))
         }
-      </div>
+      </motion.div>
       {totalPages > 1 && (
-        <div className='flex justify-center pt-8 scroll-entry'>
+        <motion.div
+          className='flex justify-center pt-8'
+          variants={fadeUpVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <Pagination>
             <PaginationContent>
               <PaginationItem>
@@ -108,9 +139,9 @@ const Blogs = ({ blogs, currentPage }: { blogs: Blog[], currentPage: number }) =
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   )
 }
 

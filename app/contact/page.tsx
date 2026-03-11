@@ -9,8 +9,20 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { IconSend } from "@tabler/icons-react"
 import { toast } from "sonner"
-import { useRef, useState, useEffect } from "react"
-import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
+import { useState, useEffect } from "react"
+import { motion } from "motion/react"
+
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+}
 
 const formSchema = z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters long" }),
@@ -29,8 +41,6 @@ const ContactPage = () => {
         }
     }, [])
 
-    const containerRef = useRef<HTMLDivElement>(null)
-    useScrollFadeIn(containerRef)
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -61,70 +71,85 @@ const ContactPage = () => {
     }
 
     return (
-        <div className="mx-auto max-w-2xl pt-28 px-8 space-y-12" ref={containerRef}>
-            <div className="space-y-3 text-center scroll-entry">
-                <h1 className="text-3xl scroll-entry md:text-4xl lg:text-5xl font-semibold">
+        <motion.div
+            className="mx-auto max-w-2xl pt-28 px-8 space-y-12"
+        >
+            <motion.div
+                className="space-y-3 text-center"
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">
                     Contact
                 </h1>
-                <p className="opacity-60 scroll-entry text-sm md:text-base">
+                <p className="opacity-60 text-sm md:text-base">
                     I will get back to you as soon as possible.
                 </p>
-            </div>
+            </motion.div>
 
-            <Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-4 max-w-lg mx-auto scroll-entry"
-                >
-                    <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Name*</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Enter your full name" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+            <motion.div
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-4 max-w-lg mx-auto"
+                    >
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Name*</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter your full name" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email*</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Enter your email" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email*</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter your email" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                    <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Message</FormLabel>
-                                <FormControl>
-                                    <Textarea rows={10} placeholder="Enter your message" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                        <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Message</FormLabel>
+                                    <FormControl>
+                                        <Textarea rows={10} placeholder="Enter your message" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                    <Button type="submit" disabled={isSubmitting} className="w-full mt-4">
-                        <IconSend className="mr-2 h-4 w-4" />
-                        Send Message
-                    </Button>
-                </form>
-            </Form>
-        </div>
+                        <Button type="submit" disabled={isSubmitting} className="w-full mt-4">
+                            <IconSend className="mr-2 h-4 w-4" />
+                            Send Message
+                        </Button>
+                    </form>
+                </Form>
+            </motion.div>
+        </motion.div>
     )
 }
 

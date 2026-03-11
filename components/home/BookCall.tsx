@@ -1,10 +1,21 @@
 "use client"
-import { useRef } from 'react';
 import { Button } from '../ui/button'
 import { IconCalendar } from '@tabler/icons-react'
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in';
+import { motion } from "motion/react";
+
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+};
 
 const BookCall = () => {
     useEffect(() => {
@@ -13,11 +24,16 @@ const BookCall = () => {
             cal("ui", { "cssVarsPerTheme": { "light": { "cal-brand": "#171717" }, "dark": { "cal-brand": "#E5E5E5" } }, "hideEventTypeDetails": false, "layout": "month_view" });
         })();
     }, [])
-    const containerRef = useRef<HTMLDivElement>(null)
-    useScrollFadeIn(containerRef)
+
     return (
-        <div className=' max-w-2xl mx-8 md:mx-auto rounded-2xl overflow-hidden  border' ref={containerRef}>
-            <div className="min-h-[200px] w-full p-12  bg-background  relative text-foreground ">
+        <motion.div
+            className='max-w-2xl mx-8 md:mx-auto rounded-2xl overflow-hidden border'
+            variants={fadeUpVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+        >
+            <div className="min-h-[200px] w-full p-12 bg-background relative text-foreground">
 
                 <div
                     className="absolute inset-0 z-0 pointer-events-none text-foreground/10"
@@ -32,8 +48,8 @@ const BookCall = () => {
                     }}
                 />
 
-                <div className=' relative z-10 space-y-8 flex flex-col items-center scroll-entry'>
-                    <h4 className=' italic font-semibold text-sm md:text-base text-center '> "You scrolled all the way down… might as well say hi."</h4>
+                <div className='relative z-10 space-y-8 flex flex-col items-center'>
+                    <h4 className='italic font-semibold text-sm md:text-base text-center'> "You scrolled all the way down… might as well say hi."</h4>
                     <Button className='flex gap-2' data-cal-namespace="quick-chat"
                         data-cal-link="radhey-mugdal-jddeix/quick-chat"
 
@@ -43,10 +59,7 @@ const BookCall = () => {
                     </Button>
                 </div>
             </div>
-
-
-
-        </div >
+        </motion.div>
     )
 }
 

@@ -1,9 +1,9 @@
 "use client"
 import ProjectCard from '@/components/project/ProjectCard'
 import { projects } from '@/data/projects'
-import { useRef, useState } from 'react'
-import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in'
+import { useState } from 'react'
 import { useEffect } from 'react'
+import { motion } from "motion/react"
 import {
     Pagination,
     PaginationContent,
@@ -15,6 +15,18 @@ import {
 
 const PROJECTS_PER_PAGE = 4
 
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+}
+
 const ProjectsPage = () => {
     useEffect(() => {
         document.title = "Projects | Radhey Mugdal"
@@ -25,8 +37,6 @@ const ProjectsPage = () => {
     }, [])
 
     const [currentPage, setCurrentPage] = useState(1)
-    const containerRef = useRef<HTMLDivElement>(null)
-    useScrollFadeIn(containerRef)
 
     const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE)
     const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE
@@ -35,7 +45,6 @@ const ProjectsPage = () => {
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
-        window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
     const renderPaginationItems = () => {
@@ -63,17 +72,39 @@ const ProjectsPage = () => {
     }
 
     return (
-        <div className='mx-auto max-w-2xl pt-28 space-y-12' ref={containerRef}>
-            <h1 className='text-center text-5xl font-semibold scroll-entry'>Projects</h1>
-            <div className='grid grid-cols-2 gap-8 scroll-entry'>
+        <motion.div
+            className='mx-auto max-w-2xl pt-28 space-y-12'
+        >
+            <motion.h1
+                className='text-center text-5xl font-semibold'
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
+                Projects
+            </motion.h1>
+            <motion.div
+                className='grid grid-cols-2 gap-8'
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
                 {
                     currentProjects.map((project) => (
                         <ProjectCard key={project.id} {...project} />
                     ))
                 }
-            </div>
+            </motion.div>
             {totalPages > 1 && (
-                <div className='flex justify-center pt-8 scroll-entry'>
+                <motion.div
+                    className='flex justify-center pt-8'
+                    variants={fadeUpVariant}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
                     <Pagination>
                         <PaginationContent>
                             <PaginationItem>
@@ -99,9 +130,9 @@ const ProjectsPage = () => {
                             </PaginationItem>
                         </PaginationContent>
                     </Pagination>
-                </div>
+                </motion.div>
             )}
-        </div>
+        </motion.div>
     )
 }
 

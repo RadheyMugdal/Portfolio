@@ -1,7 +1,18 @@
 "use client";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
-import { useRef } from "react"
-import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
+import { motion } from "motion/react"
+
+const fadeUpVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.1, 0.25, 1],
+        }
+    }
+};
 const experiences = [{
     company: "Practiskills Pvt. Ltd.",
     role: "Full Stack Developer",
@@ -47,16 +58,31 @@ const highlightText = (text: string, highlights: string[]) => {
 }
 
 const WorkExperience = () => {
-    const containerRef = useRef<HTMLDivElement>(null)
-    useScrollFadeIn(containerRef)
     return (
-        <div className=" max-w-2xl mx-4 md:mx-auto" ref={containerRef}>
-            <div className=" space-y-4">
-                <h3 className="text-xl font-semibold scroll-entry">Work Experience</h3>
+        <div className="max-w-2xl mx-4 md:mx-auto">
+            <div className="space-y-4">
+                <motion.h3
+                    className="text-xl font-semibold"
+                    variants={fadeUpVariant}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5 }}
+                >
+                    Work Experience
+                </motion.h3>
                 <Accordion type="single" className="" collapsible defaultValue="experience">
                     {
                         experiences.map((experience) => (
-                            <AccordionItem key={experience.company} value="experience" className="scroll-entry" >
+                            <motion.div
+                                key={experience.company}
+                                variants={fadeUpVariant}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                            >
+                                <AccordionItem value="experience" >
                                 <AccordionTrigger className=" w-full hover:no-underline" >
                                     <div className="flex  w-full gap-4">
                                         <div className="  md:size-18  size-12  rounded-lg overflow-hidden ">
@@ -109,6 +135,7 @@ const WorkExperience = () => {
 
                                 </AccordionContent>
                             </AccordionItem>
+                            </motion.div>
                         ))
                     }
 

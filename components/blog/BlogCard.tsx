@@ -1,12 +1,10 @@
 "use client";
-import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
-import gsap from "gsap";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useRef } from "react";
+import { motion } from "motion/react";
 import { Badge } from "../ui/badge";
 import {
   Card,
@@ -33,37 +31,30 @@ const BlogCard = ({
   keywords,
   date,
 }: Props) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = React.useState(false);
   const router = useRouter();
   return (
     <Card
       key={id}
-      className="pt-3 overflow-hidden group  cursor-pointer"
-      ref={cardRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="pt-3 overflow-hidden group cursor-pointer"
       onClick={() => {
         router.push(`/blogs/${id}`);
       }}
     >
-      <div className=" w-[calc(100%-24px)] mx-auto h-48    rounded-md overflow-hidden ">
+      <div className="w-[calc(100%-24px)] mx-auto h-48 rounded-md overflow-hidden">
         <Image
           src={thumbnailurl}
           width={1028}
           height={780}
           alt="mockup"
-          className=" w-full  group-hover:scale-110 transition-transform duration-400 ease-in-out  h-full object-cover"
+          className="w-full group-hover:scale-110 transition-transform duration-400 ease-in-out h-full object-cover"
         />
       </div>
 
-      <CardHeader className=" px-4 ">
-        <CardTitle className="  text-md   font-semibold gap-[3px]   flex items-start   ">
+      <CardHeader className="px-4">
+        <CardTitle className="text-md font-semibold gap-[3px] flex items-start">
           <span className="flex-1">{name}</span>
           <Link href={`/blogs/${id}`}></Link>
           <BlogCardButton
-            containerRef={cardRef as React.RefObject<HTMLDivElement>}
-            isHovered={isHovered}
             onClick={() => {
               router.push(`/blogs/${id}`);
             }}
@@ -84,67 +75,32 @@ const BlogCard = ({
 };
 
 type BlogCardButtonProps = {
-  containerRef: React.RefObject<HTMLDivElement>;
-  isHovered: boolean;
   className?: string;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+  onClick?: () => void;
+};
 
 const BlogCardButton = ({
-  containerRef,
-  isHovered,
   className,
-  ...props
+  onClick,
 }: BlogCardButtonProps) => {
-  const arrow = useRef(null);
-  const tl = useRef<GSAPTimeline>(null);
-
-  useGSAP(
-    () => {
-      tl.current = gsap
-        .timeline({ paused: true })
-        .to(arrow.current, {
-          x: 6,
-          y: -6,
-          opacity: 0,
-          duration: 0.35,
-          ease: "expo.out",
-        })
-        .set(arrow.current, {
-          x: -6,
-          y: 6,
-        })
-        .to(
-          arrow.current,
-          {
-            x: 0,
-            y: 0,
-            opacity: 1,
-            duration: 0.35,
-            ease: "expo.out",
-          },
-          "<+0.1",
-        );
-    },
-    { scope: containerRef },
-  );
-
-  React.useEffect(() => {
-    if (isHovered) {
-      if (tl.current?.isActive()) return;
-      tl.current?.restart();
-    }
-  }, [isHovered]);
-
   return (
-    <button
+    <motion.button
       className={clsx(className, "overflow-hidden cursor-pointer")}
-      {...props}
+      onClick={onClick}
+      whileHover={{
+        x: 6,
+        y: -6,
+        opacity: 0,
+        transition: { duration: 0.35 },
+      }}
+      animate={{
+        x: 0,
+        y: 0,
+        opacity: 1,
+      }}
     >
-      <IconArrowUpRight
-        ref={arrow}
-        className=" size-6  will-change-transform will-change-opacity "
-      />
-    </button>
+      <IconArrowUpRight className="size-6 will-change-transform will-change-opacity" />
+    </motion.button>
   );
 };
 
