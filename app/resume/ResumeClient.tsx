@@ -3,14 +3,14 @@
 import { useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import {
-    ChevronLeft,
-    ChevronRight,
-    Download,
-    ExternalLink,
-    Loader2,
-    ZoomIn,
-    ZoomOut,
-} from 'lucide-react'
+    IconChevronLeft,
+    IconChevronRight,
+    IconDownload,
+    IconExternalLink,
+    IconLoader,
+    IconZoomIn,
+    IconZoomOut,
+} from '@tabler/icons-react'
 
 import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
@@ -38,7 +38,7 @@ export default function ResumeClient() {
                         disabled={pageNumber <= 1}
                         className="btn"
                     >
-                        <ChevronLeft size={18} />
+                        <IconChevronLeft size={18} />
                     </button>
 
                     <span className="text-sm opacity-70">
@@ -50,7 +50,7 @@ export default function ResumeClient() {
                         disabled={pageNumber >= (numPages ?? 1)}
                         className="btn"
                     >
-                        <ChevronRight size={18} />
+                        <IconChevronRight size={18} />
                     </button>
                 </div>
 
@@ -58,11 +58,11 @@ export default function ResumeClient() {
                     <ButtonGroup>
 
                         <Button variant={"outline"} size={"icon-sm"} onClick={() => setScale(s => Math.max(s - 0.1, 0.6))} className="btn">
-                            <ZoomOut size={18} />
+                            <IconZoomOut size={18} />
                         </Button>
 
                         <Button variant={"outline"} size={"icon-sm"} onClick={() => setScale(s => Math.min(s + 0.1, 2))} className="btn">
-                            <ZoomIn size={18} />
+                            <IconZoomIn size={18} />
                         </Button>
                     </ButtonGroup>
                     <a
@@ -71,7 +71,7 @@ export default function ResumeClient() {
                         className="btn"
                     >
                         <Button size={"sm"}>
-                            <Download size={16} />
+                            <IconDownload size={16} />
                             Download
                         </Button>
                     </a>
@@ -83,7 +83,7 @@ export default function ResumeClient() {
                     >
                         <Button variant={"secondary"} size={"icon-sm"}>
 
-                            <ExternalLink size={18} />
+                            <IconExternalLink size={18} />
                         </Button>
                     </a>
 
@@ -97,7 +97,7 @@ export default function ResumeClient() {
                     onLoadSuccess={({ numPages }) => setNumPages(numPages)}
                     loading={(
                         <div className=' w-full  h-[80vh] flex items-center flex-col gap-1 justify-center'>
-                            <Loader2 className=' animate-spin ' />
+                            <IconLoader className=' animate-spin ' />
                             <span className=' text-foreground/75'>
                                 Loading resume..
                             </span>

@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { Send } from "lucide-react"
+import { IconSend } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { useRef, useState, useEffect } from "react"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
@@ -119,7 +119,7 @@ const ContactPage = () => {
                     />
 
                     <Button type="submit" disabled={isSubmitting} className="w-full mt-4">
-                        <Send className="mr-2 h-4 w-4" />
+                        <IconSend className="mr-2 h-4 w-4" />
                         Send Message
                     </Button>
                 </form>

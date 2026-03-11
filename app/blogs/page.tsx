@@ -13,12 +13,16 @@ export const metadata: Metadata = {
   },
 }
 
-const BlogPage = async () => {
-
+const BlogPage = async ({
+    searchParams,
+}: {
+    searchParams: { page?: string }
+}) => {
+    const page = Number(searchParams.page) || 1
     const blogs = await allBlogs.sort((a, b) => b.date.getTime() - a.date.getTime())
     return (
         <div className=' mx-8 md:mx-auto max-w-2xl pt-28 '>
-            <Blogs blogs={blogs} />
+            <Blogs blogs={blogs} currentPage={page} />
         </div>
     )
 }

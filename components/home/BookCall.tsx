@@ -1,7 +1,7 @@
 "use client"
 import { useRef } from 'react';
 import { Button } from '../ui/button'
-import { CalendarDays } from 'lucide-react'
+import { IconCalendar } from '@tabler/icons-react'
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { useScrollFadeIn } from '@/hooks/use-scroll-fade-in';
@@ -38,7 +38,7 @@ const BookCall = () => {
                         data-cal-link="radhey-mugdal-jddeix/quick-chat"
 
                         data-cal-config='{"layout":"month_view","theme":"auto"}'>
-                        <CalendarDays />
+                        <IconCalendar />
                         Book a quick call
                     </Button>
                 </div>

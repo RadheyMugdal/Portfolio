@@ -3,16 +3,16 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import {
-  Boxes,
-  FileText,
-  User,
-  Mail,
-  Home,
-  File,
-  Github,
-  Linkedin,
-  X,
-} from "lucide-react";
+  IconBoxMultiple,
+  IconFileText,
+  IconUser,
+  IconMail,
+  IconHome,
+  IconFile,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconX,
+} from "@tabler/icons-react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -36,35 +36,35 @@ const commandItems: CommandItem[] = [
     id: "home",
     name: "Go to Home",
     href: "/",
-    icon: Home,
+    icon: IconHome,
     shortcut: "G H",
   },
   {
     id: "projects",
     name: "View Projects",
     href: "/projects",
-    icon: Boxes,
+    icon: IconBoxMultiple,
     shortcut: "G P",
   },
   {
     id: "blogs",
     name: "Read Blogs",
     href: "/blogs",
-    icon: FileText,
+    icon: IconFileText,
     shortcut: "G B",
   },
   {
     id: "resume",
     name: "View Resume",
     href: "/resume",
-    icon: File,
+    icon: IconFile,
     shortcut: "G R",
   },
   {
     id: "contact",
     name: "Contact Me",
     href: "/contact",
-    icon: Mail,
+    icon: IconMail,
     shortcut: "G C",
   },
 ];
@@ -74,13 +74,13 @@ const socialItems: CommandItem[] = [
     id: "github",
     name: "GitHub Profile",
     href: "https://github.com/radheymugdal",
-    icon: Github,
+    icon: IconBrandGithub,
   },
   {
     id: "linkedin",
     name: "LinkedIn Profile",
     href: "https://linkedin.com/in/radheymugdal",
-    icon: Linkedin,
+    icon: IconBrandLinkedin,
   },
 ];
 

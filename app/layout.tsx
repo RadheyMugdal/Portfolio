@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/home/Header";
@@ -7,8 +7,9 @@ import Footer from "@/components/home/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import SmoothScrolling from "@/components/global/SmoothScrolling";
 import { Analytics } from "@vercel/analytics/next"
+import { cn } from "@/lib/utils";
 
-
+const nunitoSans = Nunito_Sans({variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -71,9 +72,9 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning className={cn("font-sans", nunitoSans.variable)}>
         <head />
-        <body className={` relative ${inter.variable} ${inter.className}`}>
+        <body className={` relative`}>
           <Analytics/>
           <ThemeProvider
             attribute="class"

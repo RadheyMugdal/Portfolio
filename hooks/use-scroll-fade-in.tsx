@@ -19,7 +19,7 @@ export const useScrollFadeIn = (containerRef: React.RefObject<HTMLElement | null
                 y: 0,
                 opacity: 1,
                 filter: 'blur(0px)',
-                stagger: 0.3,
+                duration: 0.6,
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top 90%",

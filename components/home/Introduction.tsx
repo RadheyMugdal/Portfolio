@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "../ui/button";
-import { Send } from "lucide-react";
+import { IconSend } from "@tabler/icons-react";
 import Link from "next/link";
 import { CgFileDocument } from "react-icons/cg";
 import { useGSAP } from "@gsap/react";
@@ -47,7 +47,7 @@ const Introduction = () => {
         <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-0">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold entry">Radhey Mugdal</h1>
-            <p className="text-sm sm:text-base text-foreground/60 entry">Full Stack Developer</p>
+            <p className="text-sm sm:text-base text-foreground/80 entry">Full Stack Developer</p>
           </div>
           <div className="flex gap-3 sm:gap-4 entry items-center">
             {
@@ -67,13 +67,13 @@ const Introduction = () => {
 
       <div className="space-y-3 sm:space-y-4">
         <div className="space-y-4 sm:space-y-5 text-sm sm:text-base">
-          <p className="text-foreground/60 entry">
+          <p className="text-foreground/80 entry">
             tldr; learning by building, breaking, and shipping things.
           </p>
-          <p className="text-foreground/60 entry">
+          <p className="text-foreground/80 entry">
             full-stack dev who loves turning ideas into real, working web apps. obsessed with understanding how systems fit together and why they fall apart.
           </p>
-          <p className="text-foreground/60 entry">
+          <p className="text-foreground/80 entry">
             curiosity fuels everything I build.
           </p>
         </div>
@@ -87,7 +87,7 @@ const Introduction = () => {
         </Link>
         <Link href={"/contact"} className="w-full sm:w-auto">
           <Button variant={"outline"} className="w-full sm:w-auto">
-            <Send />
+            <IconSend />
             Get in touch
           </Button>
         </Link>

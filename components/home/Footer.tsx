@@ -1,6 +1,6 @@
 "use client"
 import { useScrollFadeIn } from "@/hooks/use-scroll-fade-in"
-import { Github, Linkedin, Twitter, Boxes, FileText, ArrowUpRight } from "lucide-react"
+import { IconBrandGithub, IconBrandLinkedin, IconBrandTwitter, IconBoxMultiple, IconFileText, IconArrowUpRight } from "@tabler/icons-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState } from "react"
@@ -15,8 +15,8 @@ const socials = [
 ]
 
 const navLinks = [
-    { name: "Projects", href: "/projects", icon: Boxes },
-    { name: "Blogs", href: "/blogs", icon: FileText },
+    { name: "Projects", href: "/projects", icon: IconBoxMultiple },
+    { name: "Blogs", href: "/blogs", icon: IconFileText },
 ]
 
 const Footer = () => {
@@ -46,9 +46,9 @@ const Footer = () => {
             </div>
 
             {/* Main footer content grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
+            <div className="scroll-entry grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
                 {/* Brand section */}
-                <div className="scroll-entry md:col-span-1">
+                <div className="md:col-span-1">
                     <Link href="/" className="inline-block mb-6 group">
                         <div className="relative">
                             <div className="absolute inset-0 bg-foreground/5 rounded-lg blur-md group-hover:bg-foreground/10 transition-all duration-500"></div>
@@ -67,7 +67,7 @@ const Footer = () => {
                 </div>
 
                 {/* Navigation section */}
-                <div className="scroll-entry md:col-span-1">
+                <div className="md:col-span-1">
                     <h4 className="text-sm font-semibold mb-4 text-foreground">Navigation</h4>
                     <ul className="space-y-3">
                         {navLinks.map((link) => {
@@ -87,7 +87,7 @@ const Footer = () => {
                                                 }`}
                                         />
                                         <span>{link.name}</span>
-                                        <ArrowUpRight
+                                        <IconArrowUpRight
                                             size={12}
                                             className={` transition-all duration-300 ${hoveredLink === link.href
                                                 ? 'opacity-100 translate-x-0.5 -translate-y-0.5'
@@ -102,7 +102,7 @@ const Footer = () => {
                 </div>
 
                 {/* Social & Contact section */}
-                <div className="scroll-entry md:col-span-1 pl-auto ">
+                <div className="md:col-span-1 pl-auto ">
                     <h4 className="text-sm font-semibold mb-4 text-foreground">Connect</h4>
                     <div className="flex flex-col gap-4">
                         <div className="flex gap-4">
@@ -123,7 +123,7 @@ const Footer = () => {
                             className="text-sm text-foreground/60 hover:text-foreground transition-colors duration-300 inline-flex items-center gap-1.5 group"
                         >
                             <span>Get in touch</span>
-                            <ArrowUpRight
+                            <IconArrowUpRight
                                 size={12}
                                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             />

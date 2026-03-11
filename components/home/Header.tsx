@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Boxes, FileText, Menu, X, Github, Linkedin, Search } from "lucide-react";
+import { IconBoxMultiple, IconFileText, IconMenu2, IconX, IconSearch } from "@tabler/icons-react";
 import { ThemeToggleButton } from "../ui/mode-toggle";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
@@ -13,8 +13,8 @@ import { CommandPalette } from "../global/CommandPalette";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const navItems = [
-    { name: "Projects", href: "/projects", icon: Boxes },
-    { name: "Blogs", href: "/blogs", icon: FileText },
+    { name: "Projects", href: "/projects", icon: IconBoxMultiple },
+    { name: "Blogs", href: "/blogs", icon: IconFileText },
 ];
 
 
@@ -32,7 +32,7 @@ const Header = () => {
                     className="md:hidden p-2"
                     onClick={() => setOpen(!open)}
                 >
-                    {open ? <X size={22} /> : <Menu size={22} />}
+                    {open ? <IconX size={22} /> : <IconMenu2 size={22} />}
                 </button>
 
                 {/* DESKTOP NAV */}
@@ -70,7 +70,7 @@ const Header = () => {
                         className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground bg-muted/50 rounded-md hover:bg-muted transition-colors"
                         onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, ctrlKey: true }))}
                     >
-                        <Search size={14} />
+                        <IconSearch size={14} />
                         <span>Search...</span>
                         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
                             <span className="text-xs">⌘</span>K

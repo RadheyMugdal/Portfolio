@@ -87,12 +87,11 @@ const WorkExperience = () => {
                                 <AccordionContent className="space-y-4 ">
 
                                     <div className=" px-0 space-y-1">
-                                        <h4 className=" text-base md:text-lg font-bold">Technologies used</h4>
-
+                                        <h4 className="  text-sm font-bold">Technologies used</h4>
                                         <div className=" flex flex-wrap gap-2">
                                             {
                                                 experience.technologies.map((technology) => (
-                                                    <div key={technology} className=" h-6  px-4 rounded-md text-xs md:text-sm bg border border-dashed  flex items-center justify-center bg-muted border-foreground/60">
+                                                    <div key={technology} className="px-2 py-1 rounded-md text-xs  bg border border-dashed  flex items-center justify-center bg-muted border-foreground/60">
                                                         {technology}
                                                     </div>
                                                 ))

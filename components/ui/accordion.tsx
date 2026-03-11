@@ -4,7 +4,7 @@ import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 
 import { cn } from "@/lib/utils"
-import { ChevronsUpDown } from "lucide-react"
+import { IconCaretUpDown } from "@tabler/icons-react"
 
 function Accordion({
   ...props
@@ -41,7 +41,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronsUpDown className=" size-4 text-muted-foreground pointer-events-none  shrink-0  my-auto " />
+        <IconCaretUpDown className=" size-4 text-muted-foreground pointer-events-none  shrink-0  my-auto " />
         {/* <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" /> */}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

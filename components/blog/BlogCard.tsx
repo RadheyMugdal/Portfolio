@@ -2,7 +2,7 @@
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 import gsap from "gsap";
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -140,7 +140,7 @@ const BlogCardButton = ({
       className={clsx(className, "overflow-hidden cursor-pointer")}
       {...props}
     >
-      <ArrowUpRight
+      <IconArrowUpRight
         ref={arrow}
         className=" size-6  will-change-transform will-change-opacity "
       />

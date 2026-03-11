@@ -1,4 +1,4 @@
-import { ArrowUp, ArrowUpRight, Github, Globe } from "lucide-react";
+import { IconArrowUp, IconArrowUpRight, IconBrandGithub, IconWorld } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -73,15 +73,15 @@ const ProjectCard = ({
           <div className="mt-4 grid grid-cols-2 gap-2">
             <Link href={githubUrl} target="_blank">
               <Button variant={"secondary"} className=" w-full">
-                <Github />
+                <IconBrandGithub />
                 Github
               </Button>
             </Link>
             <Link href={webUrl} target="_blank">
               <Button className="group/button w-full">
-                <Globe />
+                <IconWorld />
                 Visit
-                <ArrowUpRight className="group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-transform duration-300" />
+                <IconArrowUpRight className="group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-transform duration-300" />
               </Button>
             </Link>
           </div>
