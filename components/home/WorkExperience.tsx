@@ -65,13 +65,13 @@ const WorkExperience = () => {
                                         <div className=" flex-1 flex  items-center justify-between">
                                             <div className=" h-full flex flex-col gap-1  justify-center">
                                                 <h4 className="font-semibold text-base ">{experience.company}</h4>
-                                                <span className="text-xs opacity-60">{experience.role}</span>
+                                                <span className="text-sm text-foreground/70">{experience.role}</span>
 
                                             </div>
                                             <div className="hidden  md:flex gap-2">
                                                 <div className=" h-full flex flex-col  gap-1 justify-center">
-                                                    <h4 className=" opacity-60  ">{experience.duration}</h4>
-                                                    <span className="text-xs   opacity-60 ">{experience.location}</span>
+                                                    <h4 className="text-foreground/70">{experience.duration}</h4>
+                                                    <span className="text-sm text-foreground/70 ">{experience.location}</span>
                                                 </div>
 
                                             </div>
@@ -80,12 +80,11 @@ const WorkExperience = () => {
                                 </AccordionTrigger>
                                 <div className="md:hidden flex gap-2 mb-4">
                                     <div className=" h-full flex  w-full  gap-1 justify-between">
-                                        <h4 className=" opacity-60 text-xs  ">{experience.duration}</h4>
-                                        <span className="text-xs   opacity-60 ">{experience.location}</span>
+                                        <h4 className="text-sm text-foreground/70">{experience.duration}</h4>
+                                        <span className="text-sm  text-foreground/70 ">{experience.location}</span>
                                     </div>
                                 </div>
                                 <AccordionContent className="space-y-4 ">
-
                                     <div className=" px-0 space-y-1">
                                         <h4 className="  text-sm font-bold">Technologies used</h4>
                                         <div className=" flex flex-wrap gap-2">
