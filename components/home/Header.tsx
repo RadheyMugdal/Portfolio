@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Boxes, FileText, Menu, X, Github, Linkedin } from "lucide-react";
+import { Boxes, FileText, Menu, X, Github, Linkedin, Search } from "lucide-react";
 import { ThemeToggleButton } from "../ui/mode-toggle";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import Image from "next/image";
 import { FaXTwitter } from "react-icons/fa6";
+import { CommandPalette } from "../global/CommandPalette";
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -35,11 +36,10 @@ const Header = () => {
                 </button>
 
                 {/* DESKTOP NAV */}
+                <div className="flex items-center gap-8">
                 <Link href="/">
                     <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert" />
                 </Link>
-
-                <div className="flex items-center gap-6">
                     <ul className="hidden md:flex items-center gap-4">
 
                         {navItems.map((item) => {
@@ -61,6 +61,21 @@ const Header = () => {
                             );
                         })}
                     </ul>
+                </div>
+                
+
+                <div className="flex items-center gap-4">
+                 
+                       <button
+                        className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground bg-muted/50 rounded-md hover:bg-muted transition-colors"
+                        onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, ctrlKey: true }))}
+                    >
+                        <Search size={14} />
+                        <span>Search...</span>
+                        <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                            <span className="text-xs">⌘</span>K
+                        </kbd>
+                    </button>
                     <ThemeToggleButton variant="polygon" />
                 </div>
                 {/* TOGGLE ON RIGHT */}
@@ -92,6 +107,7 @@ const Header = () => {
                     </ul>
                 </div>
             )}
+            <CommandPalette />
         </div>
     );
 };

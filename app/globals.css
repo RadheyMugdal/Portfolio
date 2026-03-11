@@ -245,11 +245,283 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
 
+  /* -------------------------------
+   Entry Animations
+-------------------------------- */
   .scroll-entry {
     opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-entry.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Entry from left */
+  .scroll-entry-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-entry-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Entry from right */
+  .scroll-entry-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-entry-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Scale and fade entry */
+  .scroll-entry-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-entry-scale.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Reveal from bottom with blur */
+  .scroll-entry-blur {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(8px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+
+  .scroll-entry-blur.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Staggered children animations */
+  .scroll-entry-stagger > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-entry-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(2) { transition-delay: 100ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(3) { transition-delay: 200ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(4) { transition-delay: 300ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(5) { transition-delay: 400ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(6) { transition-delay: 500ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(7) { transition-delay: 600ms; }
+  .scroll-entry-stagger.is-visible > *:nth-child(8) { transition-delay: 700ms; }
+
+  .scroll-entry-stagger.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Page load animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Animation delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* -------------------------------
+   Command Palette
+-------------------------------- */
+  /* Command dialog backdrop */
+  [data-state="open"] > [role="dialog"] {
+    animation: commandDialogIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes commandDialogIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Command item hover animation */
+  [cmdk-item] {
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [cmdk-item][data-selected="true"] {
+    transform: translateX(4px);
+  }
+
+  /* Search icon pulse animation */
+  .search-icon-pulse {
+    animation: searchPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes searchPulse {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Command input focus ring */
+  [cmdk-input] {
+    transition: all 0.2s ease;
+    outline: none !important;
+  }
+
+  [cmdk-input]:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  [cmdk-input-wrapper] {
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Keyboard shortcut badge */
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    background: var(--muted);
+    color: var(--muted-foreground);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.15s ease;
+  }
+
+  kbd:hover {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  /* Floating action button for mobile */
+  .fab-button {
+    animation: fabIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes fabIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .fab-button:hover {
+    animation: fabPulse 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes fabPulse {
+    0%, 100% {
+      transform: scale(1.05);
+    }
+    50% {
+      transform: scale(1.1);
+    }
   }
 }
