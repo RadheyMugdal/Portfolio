@@ -17,14 +17,12 @@ const containerVariants = {
   visible: {
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.1,
     },
   },
 };
 
 const entryVariants = {
   hidden: {
-    y: 30,
     opacity: 0,
     filter:'blur(10px)'
   },
@@ -38,6 +36,7 @@ const entryVariants = {
     },
   },
 };
+
 
 const Introduction = () => {
   return (

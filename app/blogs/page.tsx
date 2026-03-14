@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { allBlogs } from 'content-collections'
 import Blogs from '@/components/blog/Blogs'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -16,13 +17,16 @@ export const metadata: Metadata = {
 const BlogPage = async ({
     searchParams,
 }: {
-    searchParams: { page?: string }
+    searchParams: Promise<{ page?: string }>
 }) => {
-    const page = Number(searchParams.page) || 1
+    const params = await searchParams
+    const page = Number(params.page) || 1
     const blogs = await allBlogs.sort((a, b) => b.date.getTime() - a.date.getTime())
     return (
         <div className=' mx-8 md:mx-auto max-w-2xl pt-28 '>
-            <Blogs blogs={blogs} currentPage={page} />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Blogs blogs={blogs} currentPage={page} />
+            </Suspense>
         </div>
     )
 }

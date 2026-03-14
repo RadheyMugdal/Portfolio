@@ -3,9 +3,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { motion } from "motion/react"
 
 const fadeUpVariant = {
-    hidden: { y: 30, opacity: 0,filter:'blur(10px)' },
+    hidden: {  opacity: 0,filter:'blur(10px)' },
     visible: {
-        y: 0,
         opacity: 1,
         filter:'blur(0px)',
         transition: {

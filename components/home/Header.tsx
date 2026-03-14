@@ -7,7 +7,7 @@ import { ThemeToggleButton } from "../ui/mode-toggle";
 import Link from "next/link";
 import Image from "next/image";
 import { CommandPalette } from "../global/CommandPalette";
-
+import { motion } from 'motion/react'
 
 const navItems = [
     { name: "Projects", href: "/projects", icon: IconBoxMultiple },
@@ -15,13 +15,42 @@ const navItems = [
 ];
 
 
+const entryVariants = {
+    hidden: {
+
+        opacity: 0,
+        filter: 'blur(10px)'
+    },
+    visible: {
+        y: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        transition: {
+            duration: 0.6,
+            ease: [0.25, 0.1, 0.25, 1] as const,
+        },
+    },
+};
+
+
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+        },
+    },
+};
 
 const Header = () => {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="fixed  max-w-3xl mx-auto top-0  md:px-8 left-0 right-0 z-50 bg-background   ">
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="fixed  max-w-3xl mx-auto top-0  md:px-8 left-0 right-0 z-50 bg-background   ">
             <div className=" h-16 px-4 flex items-center justify-between">
 
                 {/* MOBILE MENU BUTTON */}
@@ -34,9 +63,13 @@ const Header = () => {
 
                 {/* DESKTOP NAV */}
                 <div className="flex items-center gap-8">
-                <Link href="/">
-                    <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert" />
-                </Link>
+                    <Link href="/">
+                        <motion.div
+                            variants={entryVariants}
+                        >
+                            <Image src="/logo.png" alt="logo" width={40} height={40} className="dark:invert" />
+                        </motion.div>
+                    </Link>
                     <ul className="hidden md:flex items-center gap-4">
 
                         {navItems.map((item) => {
@@ -44,7 +77,9 @@ const Header = () => {
                             const active = pathname === item.href;
 
                             return (
-                                <li key={item.href} className="relative group">
+                                <motion.li key={item.href}
+                                    variants={entryVariants}
+                                    className="relative group">
                                     <a
                                         href={item.href}
                                         className={`flex items-center gap-1.5 text-sm  transition-opacity
@@ -54,16 +89,17 @@ const Header = () => {
                                         {item.name}
                                     </a>
 
-                                </li>
+                                </motion.li>
                             );
                         })}
                     </ul>
                 </div>
-                
+
 
                 <div className="flex items-center gap-4">
-                 
-                       <button
+
+                    <motion.button
+                        variants={entryVariants}
                         className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground bg-muted/50 rounded-md hover:bg-muted transition-colors"
                         onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, ctrlKey: true }))}
                     >
@@ -72,8 +108,10 @@ const Header = () => {
                         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
                             <span className="text-xs">⌘</span>K
                         </kbd>
-                    </button>
-                    <ThemeToggleButton variant="polygon" />
+                    </motion.button>
+                    <motion.div variants={entryVariants} initial="hidden" animate="visible">
+                        <ThemeToggleButton variant="polygon" />
+                    </motion.div>
                 </div>
                 {/* TOGGLE ON RIGHT */}
             </div>
@@ -105,7 +143,7 @@ const Header = () => {
                 </div>
             )}
             <CommandPalette />
-        </div>
+        </motion.div>
     );
 };
 

@@ -6,9 +6,8 @@ import Link from "next/link"
 import { motion } from "motion/react"
 
 const fadeUpVariant = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: {
-        y: 0,
         opacity: 1,
         transition: {
             duration: 0.6,

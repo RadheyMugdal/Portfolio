@@ -11,12 +11,12 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { useRouter } from 'next/navigation'
+import { useQueryState } from 'nuqs'
 
 const BLOGS_PER_PAGE = 6
 
 const fadeUpVariant = {
-    hidden: { y: 30, opacity: 0,filter:'blur(10px)' },
+    hidden: { opacity: 0,filter:'blur(10px)' },
     visible: {
         y: 0,
         opacity: 1,
@@ -29,25 +29,15 @@ const fadeUpVariant = {
 }
 
 const Blogs = ({ blogs, currentPage }: { blogs: Blog[], currentPage: number }) => {
-  const [page, setPage] = useState(currentPage)
-  const router = useRouter()
+  const [page, setPage] = useQueryState('page', { defaultValue: currentPage, parse: Number })
 
   const totalPages = Math.ceil(blogs.length / BLOGS_PER_PAGE)
   const startIndex = (page - 1) * BLOGS_PER_PAGE
   const endIndex = startIndex + BLOGS_PER_PAGE
   const currentBlogs = blogs.slice(startIndex, endIndex)
 
-  useEffect(() => {
-    setPage(currentPage)
-  }, [currentPage])
-
   const handlePageChange = (newPage: number) => {
-    const params = new URLSearchParams()
-    if (newPage === 1) {
-      router.push('/blogs')
-    } else {
-      router.push(`/blogs?page=${newPage}`)
-    }
+    setPage(newPage)
   }
 
   const renderPaginationItems = () => {

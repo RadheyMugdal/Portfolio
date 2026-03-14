@@ -4,7 +4,7 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion } from "motion/react";
+import { motion, Variant } from "motion/react";
 import { Badge } from "../ui/badge";
 import {
   Card,
@@ -23,6 +23,7 @@ type Props = {
   date: string;
 };
 
+
 const BlogCard = ({
   id,
   thumbnailurl,
@@ -33,6 +34,11 @@ const BlogCard = ({
 }: Props) => {
   const router = useRouter();
   return (
+    <motion.div
+      whileHover={"hover"}
+      initial="rest"
+      
+    >
     <Card
       key={id}
       className="pt-3 overflow-hidden group cursor-pointer"
@@ -71,7 +77,23 @@ const BlogCard = ({
         </div>
       </CardFooter>
     </Card>
+    </motion.div>
   );
+};
+
+const arrowVariants = {
+  rest: {
+    x: 0,
+    y: 0,
+  },
+  hover: {
+    x: 6,
+    y: -6,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut" as const,
+    },
+  },
 };
 
 type BlogCardButtonProps = {
@@ -87,17 +109,7 @@ const BlogCardButton = ({
     <motion.button
       className={clsx(className, "overflow-hidden cursor-pointer")}
       onClick={onClick}
-      whileHover={{
-        x: 6,
-        y: -6,
-        opacity: 0,
-        transition: { duration: 0.35 },
-      }}
-      animate={{
-        x: 0,
-        y: 0,
-        opacity: 1,
-      }}
+      variants={arrowVariants}
     >
       <IconArrowUpRight className="size-6 will-change-transform will-change-opacity" />
     </motion.button>

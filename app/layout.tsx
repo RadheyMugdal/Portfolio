@@ -7,6 +7,7 @@ import Footer from "@/components/home/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/next"
 import { cn } from "@/lib/utils";
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 const nunitoSans = Nunito_Sans({variable:'--font-sans'});
 
@@ -81,11 +82,13 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header />
+            <NuqsAdapter>
+              <Header />
 
-            {children}
-            <Footer />
-            <Toaster />
+              {children}
+              <Footer />
+              <Toaster />
+            </NuqsAdapter>
           </ThemeProvider>
         </body>
       </html>
