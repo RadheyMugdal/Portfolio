@@ -1,12 +1,12 @@
 import {
-    Html,
     Body,
     Container,
+    Heading,
+    Hr,
+    Html,
+    Link,
     Section,
     Text,
-    Heading,
-    Link,
-    Hr,
 } from "@react-email/components";
 
 type EmailTemplateProps = {

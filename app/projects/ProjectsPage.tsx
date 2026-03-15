@@ -1,17 +1,17 @@
 "use client"
 import ProjectCard from '@/components/project/ProjectCard'
-import { projects } from '@/data/projects'
-import { useEffect } from 'react'
-import { motion } from "motion/react"
 import {
     Pagination,
     PaginationContent,
     PaginationItem,
     PaginationLink,
     PaginationNext,
-    PaginationPrevious  ,
+    PaginationPrevious,
 } from "@/components/ui/pagination"
+import { projects } from '@/data/projects'
+import { motion } from "motion/react"
 import { useQueryState } from 'nuqs'
+import { useEffect } from 'react'
 
 const PROJECTS_PER_PAGE = 4
 

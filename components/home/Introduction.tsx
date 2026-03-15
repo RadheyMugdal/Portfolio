@@ -1,10 +1,10 @@
 "use client";
-import { Button } from "../ui/button";
 import { IconSend } from "@tabler/icons-react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { CgFileDocument } from "react-icons/cg";
-import { motion } from "motion/react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { Button } from "../ui/button";
 
 const socials = [
   { name: "twitter", logo: FaXTwitter, href: "https://twitter.com/radheymugdal" },

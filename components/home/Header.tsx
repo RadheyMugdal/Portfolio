@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { IconBoxMultiple, IconFileText, IconMenu2, IconX, IconSearch } from "@tabler/icons-react";
-import { ThemeToggleButton } from "../ui/mode-toggle";
-import Link from "next/link";
+import { IconBoxMultiple, IconFileText, IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
+import { motion } from 'motion/react';
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { CommandPalette } from "../global/CommandPalette";
-import { motion } from 'motion/react'
+import { ThemeToggleButton } from "../ui/mode-toggle";
 
 const navItems = [
     { name: "Projects", href: "/projects", icon: IconBoxMultiple },

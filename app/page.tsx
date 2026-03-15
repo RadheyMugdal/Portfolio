@@ -1,14 +1,12 @@
-import type { Metadata } from "next";
-import { allBlogs } from "content-collections";
 import Blogs from "@/components/home/Blog";
 import BookCall from "@/components/home/BookCall";
-import Footer from "@/components/home/Footer";
 import GithubActivity from "@/components/home/GithubActivity";
-import Header from "@/components/home/Header";
 import Introduction from "@/components/home/Introduction";
 import Projects from "@/components/home/Projects";
 import Stack from "@/components/home/Stack";
 import WorkExperience from "@/components/home/WorkExperience";
+import { allBlogs } from "content-collections";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Radhey Mugdal - Software Engineer",

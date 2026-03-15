@@ -1,7 +1,7 @@
 
 import { NextRequest } from 'next/server';
-import EmailTemplate from '../../../components/contact/EmailTemplate';
 import { Resend } from 'resend';
+import EmailTemplate from '../../../components/contact/EmailTemplate';
 
 export const runtime = "nodejs"
 

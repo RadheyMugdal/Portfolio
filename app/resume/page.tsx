@@ -1,7 +1,7 @@
 "use client";
-import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
-import { motion } from "motion/react"
+import { motion } from "motion/react";
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
 
 const ResumeClient = dynamic(() => import('./ResumeClient'), {
     ssr: false,

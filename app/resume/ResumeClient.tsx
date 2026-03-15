@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { Document, Page, pdfjs } from 'react-pdf'
 import {
     IconChevronLeft,
     IconChevronRight,
@@ -11,11 +9,13 @@ import {
     IconZoomIn,
     IconZoomOut,
 } from '@tabler/icons-react'
+import { useState } from 'react'
+import { Document, Page, pdfjs } from 'react-pdf'
 
-import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css'
 import { Button } from '@/components/ui/button'
 import { ButtonGroup } from '@/components/ui/button-group'
+import 'react-pdf/dist/Page/AnnotationLayer.css'
+import 'react-pdf/dist/Page/TextLayer.css'
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',

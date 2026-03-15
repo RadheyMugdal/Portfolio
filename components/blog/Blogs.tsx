@@ -1,17 +1,16 @@
 "use client"
-import React, { useState, useEffect } from 'react'
-import BlogCard from './BlogCard'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 import type { Blog } from 'content-collections'
 import { motion } from "motion/react"
-import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination"
 import { useQueryState } from 'nuqs'
+import BlogCard from './BlogCard'
 
 const BLOGS_PER_PAGE = 6
 

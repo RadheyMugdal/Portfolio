@@ -1,8 +1,8 @@
 "use client";
 
-import { GitHubCalendar } from 'react-github-calendar';
-import { useTheme } from 'next-themes';
 import { motion } from "motion/react";
+import { useTheme } from 'next-themes';
+import { GitHubCalendar } from 'react-github-calendar';
 
 const fadeUpVariant = {
     hidden: { opacity: 0,filter:'blur(10px)' },

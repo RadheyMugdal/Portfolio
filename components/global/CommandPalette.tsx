@@ -1,18 +1,5 @@
 "use client";
 
-import * as React from "react";
-import { useRouter } from "next/navigation";
-import {
-  IconBoxMultiple,
-  IconFileText,
-  IconUser,
-  IconMail,
-  IconHome,
-  IconFile,
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconX,
-} from "@tabler/icons-react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -22,6 +9,17 @@ import {
   CommandList,
   CommandShortcut,
 } from "@/components/ui/command";
+import {
+  IconBoxMultiple,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconFile,
+  IconFileText,
+  IconHome,
+  IconMail
+} from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import * as React from "react";
 
 interface CommandItem {
   id: string;

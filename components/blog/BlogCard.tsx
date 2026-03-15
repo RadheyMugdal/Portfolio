@@ -1,10 +1,10 @@
 "use client";
-import clsx from "clsx";
 import { IconArrowUpRight } from "@tabler/icons-react";
+import clsx from "clsx";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion, Variant } from "motion/react";
 import { Badge } from "../ui/badge";
 import {
   Card,

@@ -1,7 +1,7 @@
-import { format } from 'date-fns'
-import { allBlogs } from 'content-collections'
-import Image from 'next/image'
 import { MDXContent } from '@content-collections/mdx/react'
+import { allBlogs } from 'content-collections'
+import { format } from 'date-fns'
+import Image from 'next/image'
 
 
 export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: blog._meta.path }))

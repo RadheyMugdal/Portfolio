@@ -1,9 +1,9 @@
 "use client";
-import { Button } from "../ui/button"
-import Link from "next/link"
-import ProjectCard from "../project/ProjectCard"
-import { projects as projectData } from "@/data/projects"
-import { motion } from "motion/react"
+import { projects as projectData } from "@/data/projects";
+import { motion } from "motion/react";
+import Link from "next/link";
+import ProjectCard from "../project/ProjectCard";
+import { Button } from "../ui/button";
 
 const projects = projectData.slice(0, 2)
 

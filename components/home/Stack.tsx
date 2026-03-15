@@ -1,6 +1,6 @@
 "use client";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 import { motion } from "motion/react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const containerVariants = {
     hidden: {},

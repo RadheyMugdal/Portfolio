@@ -1,12 +1,12 @@
 "use client"
-import { IconBrandGithub, IconBrandLinkedin, IconBrandTwitter, IconBoxMultiple, IconFileText, IconArrowUpRight } from "@tabler/icons-react"
+import { IconArrowUpRight, IconBoxMultiple, IconFileText } from "@tabler/icons-react"
+import { motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { FaXTwitter } from "react-icons/fa6";
-import { motion } from "motion/react"
+import { FaXTwitter } from "react-icons/fa6"
 
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa"
 
 const fadeUpVariant = {
     hidden: {  opacity: 0 ,filter:'blur(10px)'},

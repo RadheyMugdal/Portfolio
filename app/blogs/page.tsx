@@ -1,7 +1,7 @@
+import Blogs from '@/components/blog/Blogs';
+import { allBlogs } from 'content-collections';
 import type { Metadata } from "next";
-import { allBlogs } from 'content-collections'
-import Blogs from '@/components/blog/Blogs'
-import { Suspense } from 'react'
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: "Blog",

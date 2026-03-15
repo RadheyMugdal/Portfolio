@@ -1,6 +1,6 @@
 "use client";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
-import { motion } from "motion/react"
+import { motion } from "motion/react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 const fadeUpVariant = {
     hidden: {  opacity: 0,filter:'blur(10px)' },

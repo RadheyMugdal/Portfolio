@@ -1,9 +1,9 @@
 "use client"
-import { Button } from '../ui/button'
-import { IconCalendar } from '@tabler/icons-react'
 import { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
+import { IconCalendar } from '@tabler/icons-react';
 import { motion } from "motion/react";
+import { useEffect } from "react";
+import { Button } from '../ui/button';
 
 const fadeUpVariant = {
     hidden: { opacity: 0,filter:'blur(10px)' },

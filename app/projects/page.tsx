@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import ProjectsPage from './ProjectsPage'
-import { Suspense } from 'react'
+import ProjectsPage from './ProjectsPage';
+import { Suspense } from 'react';
+import Loader from "@/components/global/loader";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -20,8 +21,9 @@ const Projects = async ({
 }) => {
     const params = await searchParams
     const page = Number(params.page) || 1
+   
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
             <ProjectsPage currentPage={page} />
         </Suspense>
     )
