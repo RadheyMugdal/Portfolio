@@ -37,11 +37,10 @@ const BlogCard = ({
     <motion.div
       whileHover={"hover"}
       initial="rest"
-      
     >
     <Card
       key={id}
-      className="pt-3 overflow-hidden group cursor-pointer"
+      className="pt-3 overflow-hidden group cursor-pointer flex flex-col h-full"
       onClick={() => {
         router.push(`/blogs/${id}`);
       }}
@@ -69,7 +68,7 @@ const BlogCard = ({
 
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <CardFooter className="mt-full px-4">
+      <CardFooter className="mt-full px-4 mt-auto">
         <div className="flex gap-1 flex-wrap">
           {keywords.map((keyword, index) => (
             <Badge key={index}>{keyword}</Badge>
