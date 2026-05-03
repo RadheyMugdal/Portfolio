@@ -1,7 +1,7 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import { useCallback, useEffect, useState, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -39,12 +39,9 @@ export const ThemeToggleButton = ({
   onClick,
 }: ThemeToggleButtonProps) => {
   const { theme: currentTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const styleCleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-
     // Cleanup any leftover styles on unmount
     return () => {
       if (styleCleanupRef.current) {
@@ -55,8 +52,7 @@ export const ThemeToggleButton = ({
   }, []);
 
   // Use prop theme if provided, otherwise use current theme from next-themes
-  // Default to 'dark' on server to match layout defaultTheme
-  const theme = mounted ? (themeProp || currentTheme) : (themeProp || 'dark');
+  const theme = themeProp || currentTheme;
 
   const handleClick = useCallback(() => {
     // Clean up previous styles before creating new ones
@@ -227,7 +223,7 @@ export const ThemeToggleButton = ({
 
     // Use View Transitions API if available
     if ('startViewTransition' in document) {
-      (document as any).startViewTransition(() => {
+      (document as Document & { startViewTransition: (callback: () => void) => void }).startViewTransition(() => {
         setTheme(newTheme);
         onClick?.();
       });
@@ -235,7 +231,7 @@ export const ThemeToggleButton = ({
       setTheme(newTheme);
       onClick?.();
     }
-  }, [theme, variant, start, url, onClick]);
+  }, [theme, variant, start, url, onClick, setTheme]);
 
   return (
     <Button
@@ -267,7 +263,7 @@ export const ThemeToggleButton = ({
 export const useThemeTransition = () => {
   const startTransition = useCallback((updateFn: () => void) => {
     if ('startViewTransition' in document) {
-      (document as any).startViewTransition(updateFn);
+      (document as Document & { startViewTransition: (callback: () => void) => void }).startViewTransition(updateFn);
     } else {
       updateFn();
     }

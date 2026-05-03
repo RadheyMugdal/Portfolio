@@ -20,7 +20,6 @@ type Props = {
   name: string;
   description: string;
   keywords: string[];
-  date: string;
 };
 
 
@@ -30,7 +29,6 @@ const BlogCard = ({
   name,
   description,
   keywords,
-  date,
 }: Props) => {
   const router = useRouter();
   return (

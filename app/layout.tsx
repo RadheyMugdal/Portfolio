@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Nunito_Sans } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/home/Header";
@@ -10,11 +10,6 @@ import { cn } from "@/lib/utils";
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 const nunitoSans = Nunito_Sans({variable:'--font-sans'});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {

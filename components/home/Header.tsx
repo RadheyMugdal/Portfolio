@@ -73,7 +73,6 @@ const Header = () => {
                     <ul className="hidden md:flex items-center gap-4">
 
                         {navItems.map((item) => {
-                            const Icon = item.icon;
                             const active = pathname === item.href;
 
                             return (

@@ -49,7 +49,7 @@ const BookCall = () => {
                 />
 
                 <div className='relative z-10 space-y-8 flex flex-col items-center'>
-                    <h4 className='italic font-semibold text-sm md:text-base text-center'> "You scrolled all the way down… might as well say hi."</h4>
+                    <h4 className='italic font-semibold text-sm md:text-base text-center'> &ldquo;You scrolled all the way down… might as well say hi.&rdquo;</h4>
                     <Button className='flex gap-2' data-cal-namespace="quick-chat"
                         data-cal-link="radhey-mugdal-jddeix/quick-chat"
 

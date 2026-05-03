@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blogs",
   description: "Read the latest articles, tutorials, and insights on web development, software engineering, and technology by Radhey Mugdal.",
   keywords: ["Radhey Mugdal", "Blog", "Web Development", "Software Engineering", "Tutorials", "Programming"],
   openGraph: {
